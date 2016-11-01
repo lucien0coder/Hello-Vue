@@ -4,13 +4,13 @@ vue2.0 plant
 
 start vue2.0 core ---- 
 
-lean es6 ---- 
-
-start sass ---- 
+learn es6 ---- 
 
 start jade ---- 
 
-start github
+start sass ---- 10.31 get in
+
+start github ---- 10.31 get in
 
 build vue project demo vue-cli\vue-Resource\vue-Validator\vue-Router\vue-loader\---- 10.30 
 
