@@ -16,6 +16,8 @@ build vue project demo vue-cli\vue-Resource\vue-Validator\vue-Router\vue-loader\
 
 start webpack
 
+start bulma
+
 
 * step 2
 
