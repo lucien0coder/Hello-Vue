@@ -87,3 +87,15 @@
 // console.log(foo.prop)
 
 // foo = {}
+
+var data = {a:1}
+
+var vm = new Vue({
+	data:data
+})
+
+// console.log(vm.a === data.a)
+console.log('$:')
+console.log(vm.$data === data)
+console.log('no $:')
+console.log(vm.data === data)
