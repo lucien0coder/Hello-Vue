@@ -153,8 +153,17 @@ header h1 {
   margin-left: -12px;
   margin-top: -12px;
 }
-.cd-timeline-img.cd-picture {
-  background: #75ce66;
+.cd-timeline-img .cd-picture{
+
+}
+.success_color {
+  background: #20bc56;
+}
+.danger_color{
+  background: #ff1f4b;
+}
+.primary_color{
+  background: #00b89c;
 }
 .cd-timeline-img.cd-movie {
   background: #c03b44;
