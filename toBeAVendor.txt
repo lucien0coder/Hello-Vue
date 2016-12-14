@@ -1,0 +1,9 @@
+1.web - vendor
+ |__login in/out
+ |__commodity manger
+ |__shop manager
+ |__order mamger
+ |__set loco
+
+2.app - customer
+ |__
