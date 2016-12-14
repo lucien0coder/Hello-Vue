@@ -1,11 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-	<title></title>
+	<title>找人</title>
+  <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="bulma.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <style>
+    .checkbox-width{
+      width:6em;
+    }
+  </style>
 </head>
 <body>
+
+<div class="section">
+  <div class="container">
+    <div class="notification">
+      <p class="title">人员搜索</p>
+      <p class="subtitle">区/部门/机构 - 人员/角色</p>
+      <div class="content">
+        <!-- 搜索 -->
+        <div class="box">
+          <div class="control is-grouped">
+            <p class="control is-expanded">
+              <input class="input" type="text" placeholder="输入相关人员信息进行搜索...">
+            </p>
+            <p class="control">
+              <a class="button is-danger">
+                查找
+              </a>
+            </p>
+          </div>
+        <!-- 帅选内容 -->
+          <a class="button is-primary">区人员</a>
+          <a class="button is-info">区角色</a>
+          <a class="button is-success">机构人员</a>
+          <a class="button is-warning">机构角色</a>
+
+          <div class="tile is-ancestor is-parent">
+            <!-- 人员、角色 备选区 -->
+            <div class="tile is-parent">
+              <div class="tile is-child">
+                <article class="tile is-child notification is-default">
+                  <p class="title">备选人员</p>
+
+                  <p class="control">
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      李大福
+                    </label>
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      周霞
+                    </label>
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      周霞
+                    </label>
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      周霞
+                    </label>
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      尤晓丽尔
+                    </label>
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      尤晓丽尔
+                    </label>
+                    <label class="checkbox checkbox-width">
+                      <input type="checkbox">
+                      李大福
+                    </label>
+                  </p>
+
+                </article>
+              </div>
+            </div>
+
+          </div><!-- tile -->
+        </div> <!-- box -->
+        <div class="columns is-mobile">
+          <div class="column is-4 is-offset-5">
+            <a class="button is-warning">确定</a>
+          </div>
+        </div>
+      </div><!-- content -->
+    </div><!-- notification -->
+  </div><!-- container -->
+</div><!-- section -->
+
+
 
 
 
@@ -98,11 +184,6 @@
     </div>
     <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
-        <p class="title">Wide tile</p>
-        <p class="subtitle">Aligned with the right tile</p>
-        <div class="content">
-          <!-- Content -->
-        </div>
       </article>
     </div>
   </div>
@@ -117,6 +198,8 @@
       </div>
     </article>
   </div>
+
+  
 </div>
 
 
