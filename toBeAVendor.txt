@@ -1,22 +1,33 @@
 1.web - vendor
  |__login in/out
-   |__register
- |__commodity manger
-   |__commodity crud(batch)
- |__shop manager
-   |__set loco
-     |__map;location
-   |__base info
-   |__commodity show setting
-   |__shop show
- |__order manager
-   |__handle order
-   |__cancel order
-   |__finish order
-   |__statistics order
- |__customer manager
-   |__statistics
-   |__push notification
+    |__register
+ |__commodity management
+    |__commodity crud(by batch)
+    |__shelf management
+ |__shop management
+    |__set loco
+       |__map(location)
+    |__base info
+    |__commodity show setting
+    |__shop show
+    |__backstage
+       |__comment from customer
+       |__push events
+ |__order management
+    |__handle order
+    |__cancel order
+    |__finish order
+    |__statistics order
+ |__customer management
+    |__statistics
+    |__push notification
 
 2.app - customer
- |__
+ |__login in/out
+    |__register
+ |__personal information management
+ |__order record
+ |__search
+    |__from record
+    |__from nearby by condition
+ |__recommend browse
