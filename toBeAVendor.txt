@@ -30,4 +30,6 @@
  |__search
     |__from record
     |__from nearby by condition
- |__recommend browse
+ |__social
+    |__recommend browse
+    |__customer comment
