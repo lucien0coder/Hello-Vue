@@ -4,26 +4,28 @@
 	<meta charset="UTF-8">
 	<title>找人</title>
 	<link rel="stylesheet" type="text/css" href="bulma.css">
-  	<style>
-
-  </style>
+	
 </head>
 <body>
-	<div class="section">
+	<div id="choice" class="section">
 	  <div class="container">
 	    <div class="notification">
 	        <!-- 搜索 -->
 	        <div class="box">
 	        <!-- 帅选内容 -->
-	          <a class="button is-primary">区人员</a>
-	          <a class="button">部门人员</a>
-	          <a class="button">机构人员</a>
-	          <div class="control is-grouped">
+		        <div class="block">
+		          <a class="button is-primary" v-if="seen_band" v-on:click="getBand"> 区人员 </a>
+		          <a class="button" v-if="seen_dept" v-on:click="getDept('显示部门人员')">部门人员</a>
+		          <a class="button" v-if="seen_org" v-on:click="getOrg">机构人员</a>
+		          <a class="button" v-if="seen_cus" v-on:click="getCus">客户</a>
+		          <a class="button" v-if="seen_part" v-on:click="getPart">平台</a>
+		        </div>
+	          <div class="control is-grouped block">
 	            <p class="control is-expanded">
-	              <input class="input" type="text" placeholder="输入相关人员信息进行搜索...">
+	              <input v-focus @keyup.enter="search_some" v-model="searchValue" class="input" type="text" placeholder="输入相关人员信息进行搜索...">
 	            </p>
 	            <p class="control">
-	              <a class="button is-success">
+	              <a class="button is-success" @click="search_some">
 	                查找
 	              </a>
 	            </p>
@@ -75,16 +77,18 @@
 			  	</div>
 
 	          </div><!-- tile -->
-				
 
 	        </div> <!-- box -->
 	        <div class="columns is-mobile">
-	          <div class="column is-4 is-offset-5">
+	          <div class="column is-2 is-offset-10">
 	            <a class="button is-danger">确定</a>
 	          </div>
 	        </div>
 	    </div><!-- notification -->
 	  </div><!-- container -->
 	</div><!-- section -->
+	
+	<script src="vue.js"></script>
+	<script src="choice.js"></script>
 </body>
 </html>
