@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" style="overflow:hidden">
 <head>
 	<meta charset="UTF-8">
 	<title>找人</title>
 	<link rel="stylesheet" type="text/css" href="bulma.css">
-	
+	<!-- 970*530 415*653-->
 </head>
 <body>
-	<div id="choice" class="section">
+	<div id="choice" class="section" style="padding:0px 0px">
 	  <div class="container">
 	    <div class="notification">
 	        <!-- 搜索 -->
 	        <div class="box">
 	        <!-- 帅选内容 -->
 		        <div class="block">
-		          <a class="button is-primary" v-if="seen_band" v-on:click="getBand"> 区人员 </a>
-		          <a class="button" v-if="seen_dept" v-on:click="getDept('显示部门人员')">部门人员</a>
+		       <!--    <a class="button is-primary" v-if="seen_band" v-on:click="getBand"> 区人员 </a>
+		          <a class="button" v-if="seen_dept" v-on:click="getDept('显示部门人员')" v-bind:class="{'is-primary':isActive}">部门人员</a>
 		          <a class="button" v-if="seen_org" v-on:click="getOrg">机构人员</a>
 		          <a class="button" v-if="seen_cus" v-on:click="getCus">客户</a>
-		          <a class="button" v-if="seen_part" v-on:click="getPart">平台</a>
+		          <a class="button" v-if="seen_part" v-on:click="getPart">平台</a> -->
+		          <area-tap v-for="title in titles" v-bind:title="title"></area-tap>
 		        </div>
 	          <div class="control is-grouped block">
 	            <p class="control is-expanded">
@@ -35,34 +36,19 @@
 	            <!-- 人员、角色 备选区 -->
 	            <div class="tile is-4 is-parent">
 	              <div class="tile is-child">
-	                  <nav class="panel">
+	                  <nav class="panel" style="height: 318px;overflow-y: auto;">
 						  <p class="panel-heading">
-						  	角色列表
+						  	{{roleTitle}}
 						  </p>
-						  <a class="panel-block has-text-centered" href="#">
-						    开发员
-						  </a>
-						  <a class="panel-block has-text-centered" href="#">
-						    开发主管
-						  </a>
+						  <a v-for="role of roles" class="panel-block has-text-centered"> {{role.roleName}} </a>
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
-						  <a class="panel-block has-text-centered" href="#">
-						    李大福
+
+						  <a @click="clickStaff" v-for="staff in staffs" class="panel-block has-text-centered" v-if="show">
+						    {{staff.name}}
 						  </a>
-						  <a class="panel-block has-text-centered" href="#">
-						    李大福
-						  </a>
-						  <a class="panel-block has-text-centered" href="#">
-						    李大福
-						  </a>
-						  <a class="panel-block has-text-centered" href="#">
-						    李大福
-						  </a>
-						  <a class="panel-block has-text-centered" href="#">
-						    李大福
-						  </a>
+						  
 						</nav>
 	              </div>
 	            </div>
@@ -70,9 +56,7 @@
 	            <div class="tile is-parent">
 				    <div class="tile is-child box">
 				      <p class="subtitle">已选人员</p>
-				      <a class="tag is-primary is-medium">李大福</a>
-				      <a class="tag is-primary is-medium">李大福</a>
-				      <a class="tag is-primary is-medium">李大福</a>
+				      <a v-for="po in pitck_ons" class="tag is-primary is-medium" style="    margin: 0 2px 2px 0;">{{po.name}}</a>
 				    </div>
 			  	</div>
 
@@ -81,14 +65,29 @@
 	        </div> <!-- box -->
 	        <div class="columns is-mobile">
 	          <div class="column is-2 is-offset-10">
-	            <a class="button is-danger">确定</a>
+	            <a class="button is-danger" @click="confirm">确定</a>
 	          </div>
 	        </div>
 	    </div><!-- notification -->
 	  </div><!-- container -->
 	</div><!-- section -->
-	
-	<script src="vue.js"></script>
+
+	<script src="../vue.js"></script>
+	<!-- 相关模板 -->
+	<script type="text/x-template" id="tab-template">
+		<a style="margin:0 2px" class="button" v-if="tab_seen" v-on:click="getArea()" v-bind:class="{'is-primary':isActive}">
+		{{title}}
+		</a>
+	</script><!--选项卡-->
+
+	<script type="text/x-template" id="item-template">
+		
+	</script><!--角色、岗位、人员-->
+
+	<script type="text/x-template" id="staff-template">
+		
+	</script><!--选中人员-->
+
 	<script src="choice.js"></script>
 </body>
 </html>
