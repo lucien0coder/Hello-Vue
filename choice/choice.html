@@ -40,14 +40,15 @@
 						  <p class="panel-heading">
 						  	{{roleTitle}}
 						  </p>
-						  <a v-for="role of roles" class="panel-block has-text-centered"> {{role.roleName}} </a>
+						  <select-item v-for="(role,index) in roles" v-bind:item="role" v-bind:index="index"  v-on:add_pickup="addRToPU(index,0)"></select-item>
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
 
-						  <a @click="clickStaff" v-for="staff in staffs" class="panel-block has-text-centered" v-if="show">
+						 <!--  <a @click="clickStaff" v-for="staff in staffs" class="panel-block has-text-centered" v-if="show">
 						    {{staff.name}}
-						  </a>
+						  </a> -->
+						  <select-item v-for="(staff,index) in staffs" v-bind:item="staff" v-bind:index="index"  v-on:add_pickup="addRToPU(index,1)"></select-item>
 						  
 						</nav>
 	              </div>
@@ -81,7 +82,9 @@
 	</script><!--选项卡-->
 
 	<script type="text/x-template" id="item-template">
-		
+		<a class="panel-block has-text-centered" @click="add_pickup"> 
+			{{item.name}} 
+		</a>
 	</script><!--角色、岗位、人员-->
 
 	<script type="text/x-template" id="staff-template">

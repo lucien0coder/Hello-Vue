@@ -21,7 +21,6 @@ Vue.component('area-tap',{
 	methods:{
 		getArea:function(e){
 			alert(this.title)
-			console.log(this.isActive)
 			if(this.isActive) this.isActive = false
 			else this.isActive = true
 		},
@@ -30,11 +29,19 @@ Vue.component('area-tap',{
 
 //角色、人员列表组件
 Vue.component('select-item',{
-	template:'#item-template'
+	props:['item'],
+	template:'#item-template',
+	methods:{
+		add_pickup:function(e){
+			this.$emit('add_pickup')
+		}
+	}
 })
 //选中人员列表组件
 Vue.component('pitckup-staff',{
-	template:'#staff-template'
+	props:[''],
+	template:'#staff-template',
+
 })
 
 //实例
@@ -50,39 +57,10 @@ let cv = new Vue({
 		isActive:false,
 		show:true,
 		pitck_ons:[
-			{name:'优乐美'},
 			{name:'麦克吉'},
 			{name:'小宝度'},
 			{name:'王欧密'},
-			{name:'优乐美'},
 			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-			{name:'优乐美'},
-			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-			{name:'优乐美'},
-			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-			{name:'优乐美'},
-			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-			{name:'优乐美'},
-			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-			{name:'优乐美'},
-			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-			{name:'优乐美'},
-			{name:'麦克吉'},
-			{name:'小宝度'},
-			{name:'王欧密'},
-				{name:'麦克吉'},
 			{name:'小宝度'},
 			{name:'王欧密'},
 			{name:'优乐美'},
@@ -94,13 +72,13 @@ let cv = new Vue({
 			{name:'优乐美'},
 			{name:'麦克吉'},
 			{name:'小宝度'},
-			{name:'王欧密'},
+			{name:'王欧密'}
 		],
 		roles:[
-			{roleName:'开发员'},
-			{roleName:'开发组长'},
-			{roleName:'开发主管'},
-			{roleName:'项目经理'}
+			{name:'开发员'},
+			{name:'开发组长'},
+			{name:'开发主管'},
+			{name:'项目经理'}
 		],
 		staffs:[
 			{name:'李大福'},
@@ -140,10 +118,15 @@ let cv = new Vue({
 			alert(this.pitck_on)
 		},
 		clickStaff:function(e){
-			console.log(this.html)
-			this.show = false;
-			let targetValue = e.target.value;
-			console.log(targetValue)
+
+		},
+		addRToPU:function(index,type){
+			// console.log('index:' + index)
+			// console.log('type:' + type)
+			let items = type == 0? this.roles:this.staffs
+			let name = items[index].name
+			items.splice(index,1)
+			this.pitck_ons.push({name:name})
 		}
 	}
 })
