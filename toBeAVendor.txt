@@ -1,0 +1,22 @@
+1.web - vendor
+ |__login in/out
+   |__register
+ |__commodity manger
+   |__commodity crud(batch)
+ |__shop manager
+   |__set loco
+     |__map;location
+   |__base info
+   |__commodity show setting
+   |__shop show
+ |__order manager
+   |__handle order
+   |__cancel order
+   |__finish order
+   |__statistics order
+ |__customer manager
+   |__statistics
+   |__push notification
+
+2.app - customer
+ |__

@@ -27,7 +27,7 @@ Vue.component('area-tap',{
 	}
 })
 
-//角色、人员列表组件
+角色、人员列表组件
 Vue.component('select-item',{
 	props:['item'],
 	template:'#item-template',
@@ -37,11 +37,17 @@ Vue.component('select-item',{
 		}
 	}
 })
+
 //选中人员列表组件
 Vue.component('pitckup-staff',{
-	props:[''],
+	props:['staff'],
 	template:'#staff-template',
-
+	methods:{
+		sStaff:function(e){
+			console.log(this.staff)
+			this.$emit('sStaff')
+		}
+	}
 })
 
 //实例
@@ -110,23 +116,28 @@ let cv = new Vue({
 		getBand:function(e){
 			console.log('gb')
 		},
-		
 		search_some:function(e){
 			alert(this.searchValue)
 		},
 		confirm:function(){
 			alert(this.pitck_on)
 		},
-		clickStaff:function(e){
-
+		addIToPU:function(index,type){
+			console.log('index:' + index)
+			console.log('type:' + type)
+			// let items = type == 0? this.roles:this.staffs
+			// let name = items[index].name
+			// items.splice(index,1)
+			// this.pitck_ons.push({name:name})
 		},
-		addRToPU:function(index,type){
-			// console.log('index:' + index)
-			// console.log('type:' + type)
-			let items = type == 0? this.roles:this.staffs
-			let name = items[index].name
-			items.splice(index,1)
-			this.pitck_ons.push({name:name})
+		shiftStaff:function(index,type){
+			console.log(index)
+			console.log(type)
+			// let target_arr = type == 0? this.roles:this.staffs
+
+			// let thisStaff = this.staffs[index];
+			// this.staffs.splice(index,1)
+
 		}
 	}
 })

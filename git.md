@@ -7,11 +7,11 @@
     git pull 同步远程仓库
 　　git push -u origin master //把本地库的所有内容推送到远程库上
 
----------------------config------------------------------
+---------------------------------------------------
 ssh-keygen -t rsa -C "your_email@youremail.com"
 local:users - name - .ssh - id_rsa.pub
 github:account settings - SSH Keys Add SSH Key
-TEST:ssh -T git@github.com
+TEST:ssh -T git@github.com7
 
 git config --global user.name "your name"
 git config --global user.name "your name" 

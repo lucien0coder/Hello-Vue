@@ -14,11 +14,6 @@
 	        <div class="box">
 	        <!-- 帅选内容 -->
 		        <div class="block">
-		       <!--    <a class="button is-primary" v-if="seen_band" v-on:click="getBand"> 区人员 </a>
-		          <a class="button" v-if="seen_dept" v-on:click="getDept('显示部门人员')" v-bind:class="{'is-primary':isActive}">部门人员</a>
-		          <a class="button" v-if="seen_org" v-on:click="getOrg">机构人员</a>
-		          <a class="button" v-if="seen_cus" v-on:click="getCus">客户</a>
-		          <a class="button" v-if="seen_part" v-on:click="getPart">平台</a> -->
 		          <area-tap v-for="title in titles" v-bind:title="title"></area-tap>
 		        </div>
 	          <div class="control is-grouped block">
@@ -31,7 +26,6 @@
 	              </a>
 	            </p>
 	          </div>
-
 	          <div class="tile is-ancestor">
 	            <!-- 人员、角色 备选区 -->
 	            <div class="tile is-4 is-parent">
@@ -40,29 +34,21 @@
 						  <p class="panel-heading">
 						  	{{roleTitle}}
 						  </p>
-						  <select-item v-for="(role,index) in roles" v-bind:item="role" v-bind:index="index"  v-on:add_pickup="addRToPU(index,0)"></select-item>
+						  <!-- <select-item v-for="(role,index) in roles" v-bind:item="role"  v-on:add_pickup="addIToPU(index,0)"></select-item> -->
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
-
-						 <!--  <a @click="clickStaff" v-for="staff in staffs" class="panel-block has-text-centered" v-if="show">
-						    {{staff.name}}
-						  </a> -->
-						  <select-item v-for="(staff,index) in staffs" v-bind:item="staff" v-bind:index="index"  v-on:add_pickup="addRToPU(index,1)"></select-item>
-						  
+						  <!-- <select-item v-for="(staff,index) in staffs" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)"></select-item> -->
 						</nav>
 	              </div>
 	            </div>
-
 	            <div class="tile is-parent">
 				    <div class="tile is-child box">
 				      <p class="subtitle">已选人员</p>
-				      <a v-for="po in pitck_ons" class="tag is-primary is-medium" style="    margin: 0 2px 2px 0;">{{po.name}}</a>
+				      <pitckup-staff v-for="(po,index) in pitck_ons" v-bind:staff="po" v-on:sStaff="shiftStaff(index,1)"></pitckup-staff>
 				    </div>
 			  	</div>
-
 	          </div><!-- tile -->
-
 	        </div> <!-- box -->
 	        <div class="columns is-mobile">
 	          <div class="column is-2 is-offset-10">
@@ -76,7 +62,7 @@
 	<script src="../vue.js"></script>
 	<!-- 相关模板 -->
 	<script type="text/x-template" id="tab-template">
-		<a style="margin:0 2px" class="button" v-if="tab_seen" v-on:click="getArea()" v-bind:class="{'is-primary':isActive}">
+		<a style="margin:0 2px" class="button" v-if="tab_seen" @click="getArea()" v-bind:class="{'is-primary':isActive}">
 		{{title}}
 		</a>
 	</script><!--选项卡-->
@@ -88,7 +74,9 @@
 	</script><!--角色、岗位、人员-->
 
 	<script type="text/x-template" id="staff-template">
-		
+		<a class="tag is-primary is-medium" style="margin: 0 2px 2px 0;" @click="sStaff">
+			{{staff.name}}
+		</a>
 	</script><!--选中人员-->
 
 	<script src="choice.js"></script>
