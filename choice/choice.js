@@ -27,7 +27,7 @@ Vue.component('area-tap',{
 	}
 })
 
-角色、人员列表组件
+// 角色、人员列表组件
 Vue.component('select-item',{
 	props:['item'],
 	template:'#item-template',
@@ -43,9 +43,8 @@ Vue.component('pitckup-staff',{
 	props:['staff'],
 	template:'#staff-template',
 	methods:{
-		sStaff:function(e){
-			console.log(this.staff)
-			this.$emit('sStaff')
+		s_staff:function(e){//方法命名方式，xxx_xxx
+			this.$emit('s_staff')
 		}
 	}
 })
@@ -54,11 +53,6 @@ Vue.component('pitckup-staff',{
 let cv = new Vue({
 	el:'#choice',
 	data:{
-		seen_part:true,
-		seen_cus:true,
-		seen_org:true,
-		seen_dept:true,
-		seen_band:true,
 		searchValue:'',
 		isActive:false,
 		show:true,
@@ -98,48 +92,27 @@ let cv = new Vue({
 		roleTitle:'角色列表',
 		titles:['区人员','部门人员','机构人员','客户','平台']
 	},
-	created:function(){
-		console.log('create: hello choice_app')
+	beforeCreate:()=>{
+		console.log('beforeCreate!')
+		GetAreaData();
 	},
 	methods:{
-		getPart:function(e){
-			console.log('gp')
-
-		},
-		getCus:function(e){
-			console.log('gc')
-		},
-		getOrg:function(e){
-			console.log('go')
-			alert(e)
-		},
-		getBand:function(e){
-			console.log('gb')
-		},
 		search_some:function(e){
 			alert(this.searchValue)
 		},
 		confirm:function(){
-			alert(this.pitck_on)
+			alert(this.pitck_ons[0].name)
 		},
 		addIToPU:function(index,type){
-			console.log('index:' + index)
-			console.log('type:' + type)
-			// let items = type == 0? this.roles:this.staffs
-			// let name = items[index].name
-			// items.splice(index,1)
-			// this.pitck_ons.push({name:name})
+			let items = type == 0? this.roles:this.staffs
+			let name = items[index].name
+			items.splice(index,1)
+			this.pitck_ons.push({name:name})
 		},
-		shiftStaff:function(index,type){
-			console.log(index)
-			console.log(type)
-			// let target_arr = type == 0? this.roles:this.staffs
-
-			// let thisStaff = this.staffs[index];
-			// this.staffs.splice(index,1)
-
+		delStaff:function(index,type){
+			let target_arr = type == 0? this.roles:this.staffs
+			let thisStaff = this.pitck_ons[index];
+			this.pitck_ons.splice(index,1)
 		}
 	}
 })
-
-// cv.seen_org = false;

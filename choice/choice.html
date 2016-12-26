@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>找人</title>
 	<link rel="stylesheet" type="text/css" href="bulma.css">
+	<link rel="stylesheet" type="text/css" href="choice.css">
 	<!-- 970*530 415*653-->
 </head>
 <body>
@@ -34,18 +35,20 @@
 						  <p class="panel-heading">
 						  	{{roleTitle}}
 						  </p>
-						  <!-- <select-item v-for="(role,index) in roles" v-bind:item="role"  v-on:add_pickup="addIToPU(index,0)"></select-item> -->
+						  
+				  			<select-item v-for="(role,index) in roles" v-bind:item="role"  v-on:add_pickup="addIToPU(index,0)"></select-item>
+					  		
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
-						  <!-- <select-item v-for="(staff,index) in staffs" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)"></select-item> -->
+						  <select-item v-for="(staff,index) in staffs" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)"></select-item>
 						</nav>
 	              </div>
 	            </div>
 	            <div class="tile is-parent">
 				    <div class="tile is-child box">
 				      <p class="subtitle">已选人员</p>
-				      <pitckup-staff v-for="(po,index) in pitck_ons" v-bind:staff="po" v-on:sStaff="shiftStaff(index,1)"></pitckup-staff>
+				      <pitckup-staff v-for="(po,index) in pitck_ons" v-bind:staff="po" v-on:s_staff="delStaff(index,0)"></pitckup-staff>
 				    </div>
 			  	</div>
 	          </div><!-- tile -->
@@ -60,11 +63,15 @@
 	</div><!-- section -->
 
 	<script src="../vue.js"></script>
+	<script src="../vue-resource.js"></script>
+
 	<!-- 相关模板 -->
 	<script type="text/x-template" id="tab-template">
-		<a style="margin:0 2px" class="button" v-if="tab_seen" @click="getArea()" v-bind:class="{'is-primary':isActive}">
-		{{title}}
-		</a>
+		<transition name="fade">
+			<a style="margin:0 2px" class="button" v-if="tab_seen" @click="getArea" v-bind:class="{'is-primary':isActive}">
+			{{title}}
+			</a>
+	    </transition>
 	</script><!--选项卡-->
 
 	<script type="text/x-template" id="item-template">
@@ -74,11 +81,12 @@
 	</script><!--角色、岗位、人员-->
 
 	<script type="text/x-template" id="staff-template">
-		<a class="tag is-primary is-medium" style="margin: 0 2px 2px 0;" @click="sStaff">
+		<a class="tag is-primary is-medium" style="margin: 0 2px 2px 0;" @click="s_staff">
 			{{staff.name}}
 		</a>
 	</script><!--选中人员-->
-
+	
+	<script src="choice-resource.js"></script>
 	<script src="choice.js"></script>
 </body>
 </html>
