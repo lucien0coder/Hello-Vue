@@ -21,8 +21,7 @@ Vue.component('area-tap',{
 	methods:{
 		getArea:function(e){
 			alert(this.title)
-			if(this.isActive) this.isActive = false
-			else this.isActive = true
+			this.isActive = !this.isActive
 		},
 	}
 })
@@ -54,8 +53,6 @@ let cv = new Vue({
 	el:'#choice',
 	data:{
 		searchValue:'',
-		isActive:false,
-		show:true,
 		pitck_ons:[
 			{name:'麦克吉'},
 			{name:'小宝度'},
