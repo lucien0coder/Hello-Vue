@@ -94,6 +94,11 @@ let cv = new Vue({
 			return this.staffs.filter((staff)=>{
 				return staff.name.indexOf(this.searchValue) !== -1
 			})
+		},
+		computedRoles:function(){
+			return this.roles.filter((role)=>{
+				return role.name.indexOf(this.searchValue) !== -1
+			})
 		}
 	},
 	beforeCreate:()=>{
@@ -108,7 +113,7 @@ let cv = new Vue({
 			alert(this.pitck_ons[0].name)
 		},
 		addIToPU:function(index,type){
-			let items = type == 0? this.roles:this.computedStaffs
+			let items = type == 0? this.computedRoles:this.computedStaffs
 			let name = items[index].name
 			items.splice(index,1)
 			this.pitck_ons.push({name:name})
@@ -123,7 +128,7 @@ let cv = new Vue({
         	el.style.height = 0
 	    },
 	    enter: function (el, done) {
-	      var delay = el.dataset.index * 150
+	      var delay = el.dataset.index * 1500
 	      setTimeout(function () {
 	        Velocity(
 	          el,
@@ -133,7 +138,7 @@ let cv = new Vue({
 	      }, delay)
 	    },
 	    leave: function (el, done) {
-	      var delay = el.dataset.index * 150
+	      var delay = el.dataset.index * 1500
 	      setTimeout(function () {
 	        Velocity(
 	          el,

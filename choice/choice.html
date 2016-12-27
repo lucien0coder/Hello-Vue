@@ -35,7 +35,18 @@
 						  <p class="panel-heading">
 						  	{{roleTitle}}
 						  </p>
-				  			<select-item v-for="(role,index) in roles" v-bind:item="role"  v-on:add_pickup="addIToPU(index,0)"></select-item>
+						  <transition-group
+     						name="roleOption"
+     						v-on:beforeEnter="beforeEnter"
+     						v-on:enter="enter"
+     						v-on:leave="leave"
+						  >
+				  			  <select-item 
+				  			  v-for="(role,index) in computedRoles" 
+				  			  v-bind:item="role"
+				  			  v-bind:key="role"  
+				  			  v-on:add_pickup="addIToPU(index,0)"></select-item>
+						  </transition-group>
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
@@ -44,8 +55,12 @@
 							v-on:beforeEnter="beforeEnter"
 							v-on:enter="enter"
 							v-on:leave="leave">
-						    <select-item v-for="(staff,index) in computedStaffs" v-bind:key="staff.name" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)">	    
-						    </select-item>
+						    	<select-item 
+						    	v-for="(staff,index) in computedStaffs" 
+						    	v-bind:key="staff.name" 
+						    	v-bind:item="staff" 
+						    	v-on:add_pickup="addIToPU(index,1)">	    
+						    	</select-item>
 						  </transition-group>
 						</nav>
 	              </div>
@@ -53,7 +68,10 @@
 	            <div class="tile is-parent">
 				    <div class="tile is-child box">
 				      <p class="subtitle">已选人员</p>
-				      <pitckup-staff v-for="(po,index) in pitck_ons" v-bind:staff="po" v-on:s_staff="delStaff(index,0)"></pitckup-staff>
+				      <pitckup-staff 
+				      v-for="(po,index) in pitck_ons" 
+				      v-bind:staff="po" 
+				      v-on:s_staff="delStaff(index,0)"></pitckup-staff>
 				    </div>
 			  	</div>
 	          </div><!-- tile -->
@@ -74,7 +92,9 @@
 	<!-- 相关模板 -->
 	<script type="text/x-template" id="tab-template">
 		<transition name="fade">
-			<a style="margin:0 2px" class="button" v-if="tab_seen" @click="getArea" v-bind:class="{'is-primary':isActive}">
+			<a style="margin:0 2px" class="button" 
+			v-if="tab_seen" @click="getArea" 
+			v-bind:class="{'is-primary':isActive}">
 			{{title}}
 			</a>
 	    </transition>
