@@ -41,7 +41,14 @@
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
-						  <select-item v-for="(staff,index) in staffs" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)"></select-item>
+						  <transition-group 
+							v-on:beforeEnter="beforeEnter"
+							v-on:enter="enter"
+							v-on:leave="leave"
+						  >
+						    <select-item v-for="(staff,index) in computedStaffs" v-bind:key="staff.name" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)"></select-item>
+
+						  </transition-group>
 						</nav>
 	              </div>
 	            </div>
@@ -64,27 +71,7 @@
 
 	<script src="../vue.js"></script>
 	<script src="../vue-resource.js"></script>
-
-	
 	<script src="../velocity.js"></script>
-	<div id="staggered-list-demo" style="padding-left: 200px">
-	  <input v-model="query">
-	  <transition-group
-	    name="staggered-fade"
-	    tag="ul"
-	    v-bind:css="false"
-	    v-on:before-enter="beforeEnter"
-	    v-on:enter="enter"
-	    v-on:leave="leave"
-	  >
-	    <li
-	      v-for="(item, index) in computedList"
-	      v-bind:key="item.msg"
-	      v-bind:data-index="index"
-	    >{{ item.msg }}</li>
-	  </transition-group>
-	</div>
-
 
 	<!-- 相关模板 -->
 	<script type="text/x-template" id="tab-template">

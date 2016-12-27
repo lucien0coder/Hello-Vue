@@ -44,7 +44,7 @@ Vue.component('pitckup-staff',{
 	methods:{
 		s_staff:function(e){//方法命名方式，xxx_xxx
 			// this.$emit('s_staff')
-			console.log(this.$el)
+			console.log(this)
 		}
 	}
 })
@@ -90,6 +90,13 @@ let cv = new Vue({
 		roleTitle:'角色列表',
 		titles:['区人员','部门人员','机构人员','客户','平台']
 	},
+	computed:{
+		computedStaffs:function(){
+			return this.staffs.filter((staff)=>{
+				return staff.name.indexOf(this.searchValue) !== -1
+			})
+		}
+	},
 	beforeCreate:()=>{
 		console.log('beforeCreate!')
 		GetAreaData();
@@ -111,55 +118,30 @@ let cv = new Vue({
 			let target_arr = type == 0? this.roles:this.staffs
 			let thisStaff = this.pitck_ons[index];
 			this.pitck_ons.splice(index,1)
-		}
+		},
+		beforeEnter: function (el) {
+        	el.style.opacity = 0
+        	el.style.height = 0
+	    },
+	    enter: function (el, done) {
+	      var delay = el.dataset.index * 150
+	      setTimeout(function () {
+	        Velocity(
+	          el,
+	          { opacity: 1},
+	          { complete: done }
+	        )
+	      }, delay)
+	    },
+	    leave: function (el, done) {
+	      var delay = el.dataset.index * 150
+	      setTimeout(function () {
+	        Velocity(
+	          el,
+	          { opacity: 0, height: 0 },
+	          { complete: done }
+	        )
+	      }, delay)
+	  	}
 	}
-})
-
-
-new Vue({
-  el: '#staggered-list-demo',
-  data: {
-    query: '',
-    list: [
-      { msg: 'Bruce Lee' },
-      { msg: 'Jackie Chan' },
-      { msg: 'Chuck Norris' },
-      { msg: 'Jet Li' },
-      { msg: 'Kung Fury' }
-    ]
-  },
-  computed: {
-    computedList: function () {
-      var vm = this
-      return this.list.filter(function (item) {
-        return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
-      })
-    }
-  },
-  methods: {
-    beforeEnter: function (el) {
-      el.style.opacity = 0
-      el.style.height = 0
-    },
-    enter: function (el, done) {
-      var delay = el.dataset.index * 150
-      setTimeout(function () {
-        Velocity(
-          el,
-          { opacity: 1, height: '1.6em' },
-          { complete: done }
-        )
-      }, delay)
-    },
-    leave: function (el, done) {
-      var delay = el.dataset.index * 150
-      setTimeout(function () {
-        Velocity(
-          el,
-          { opacity: 0, height: 0 },
-          { complete: done }
-        )
-      }, delay)
-    }
-  }
 })
