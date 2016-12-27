@@ -8,7 +8,7 @@ function GetAreaData(){
 			console.log(jsonData)
 
 			cv.pitck_ons=[];
-		}, (res)=>{
-
+		}, (err)=>{
+			console.log(res)
 		});
 }

@@ -43,8 +43,7 @@ Vue.component('pitckup-staff',{
 	template:'#staff-template',
 	methods:{
 		s_staff:function(e){//方法命名方式，xxx_xxx
-			// this.$emit('s_staff')
-			console.log(this)
+			this.$emit('s_staff')
 		}
 	}
 })
@@ -99,7 +98,7 @@ let cv = new Vue({
 	},
 	beforeCreate:()=>{
 		console.log('beforeCreate!')
-		GetAreaData();
+		// GetAreaData();
 	},
 	methods:{
 		search_some:function(e){
@@ -109,7 +108,7 @@ let cv = new Vue({
 			alert(this.pitck_ons[0].name)
 		},
 		addIToPU:function(index,type){
-			let items = type == 0? this.roles:this.staffs
+			let items = type == 0? this.roles:this.computedStaffs
 			let name = items[index].name
 			items.splice(index,1)
 			this.pitck_ons.push({name:name})

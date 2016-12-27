@@ -35,19 +35,17 @@
 						  <p class="panel-heading">
 						  	{{roleTitle}}
 						  </p>
-						  
 				  			<select-item v-for="(role,index) in roles" v-bind:item="role"  v-on:add_pickup="addIToPU(index,0)"></select-item>
-					  		
 	                      <p class="panel-heading">
 						    人员列表
 						  </p>
 						  <transition-group 
+						    name="staffOptions"
 							v-on:beforeEnter="beforeEnter"
 							v-on:enter="enter"
-							v-on:leave="leave"
-						  >
-						    <select-item v-for="(staff,index) in computedStaffs" v-bind:key="staff.name" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)"></select-item>
-
+							v-on:leave="leave">
+						    <select-item v-for="(staff,index) in computedStaffs" v-bind:key="staff.name" v-bind:item="staff" v-on:add_pickup="addIToPU(index,1)">	    
+						    </select-item>
 						  </transition-group>
 						</nav>
 	              </div>
