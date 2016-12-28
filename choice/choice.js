@@ -49,7 +49,7 @@ Vue.component('pitckup-staff',{
 })
 
 //实例
-let cv = new Vue({
+var cv = new Vue({
 	el:'#choice',
 	data:{
 		searchValue:'',
@@ -91,17 +91,19 @@ let cv = new Vue({
 	},
 	computed:{
 		computedStaffs:function(){
-			return this.staffs.filter((staff)=>{
-				return staff.name.indexOf(this.searchValue) !== -1
+			var vm = this
+			return this.staffs.filter(function(staff){
+				return staff.name.indexOf(vm.searchValue) !== -1
 			})
 		},
 		computedRoles:function(){
-			return this.roles.filter((role)=>{
-				return role.name.indexOf(this.searchValue) !== -1
+			var vm = this
+			return this.roles.filter(function(role){
+				return role.name.indexOf(vm.searchValue) !== -1
 			})
 		}
 	},
-	beforeCreate:()=>{
+	beforeCreate:function(){
 		console.log('beforeCreate!')
 		// GetAreaData();
 	},
@@ -113,14 +115,14 @@ let cv = new Vue({
 			alert(this.pitck_ons[0].name)
 		},
 		addIToPU:function(index,type){
-			let items = type == 0? this.computedRoles:this.computedStaffs
-			let name = items[index].name
+			var items = type == 0? this.computedRoles:this.computedStaffs
+			var name = items[index].name
 			items.splice(index,1)
 			this.pitck_ons.push({name:name})
 		},
 		delStaff:function(index,type){
-			let target_arr = type == 0? this.roles:this.staffs
-			let thisStaff = this.pitck_ons[index];
+			var target_arr = type == 0? this.roles:this.staffs
+			var thisStaff = this.pitck_ons[index];
 			this.pitck_ons.splice(index,1)
 		},
 		beforeEnter: function (el) {
