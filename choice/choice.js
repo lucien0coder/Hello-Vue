@@ -105,7 +105,7 @@ var cv = new Vue({
 	},
 	beforeCreate:function(){
 		console.log('beforeCreate!')
-		// GetAreaData();
+		GetAreaData();
 	},
 	methods:{
 		search_some:function(e){
