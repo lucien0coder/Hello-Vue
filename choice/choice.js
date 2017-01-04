@@ -112,7 +112,8 @@ var cv = new Vue({
 			alert(this.searchValue)
 		},
 		confirm:function(){
-			alert(this.pitck_ons[0].name)
+			// alert(this.pitck_ons[0].name)
+			window.parent.a()
 		},
 		addIToPU:function(index,type){
 			var items = type == 0? this.computedRoles:this.computedStaffs

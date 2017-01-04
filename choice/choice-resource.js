@@ -12,3 +12,18 @@ function GetAreaData(){
 			console.log(res)
 		});
 }
+
+function GetAPost(){
+	Vue.http
+		.get('',new FormatData(),{
+			params:{
+				id:1,
+				value:'name'
+			}
+		})
+			.then((res)=>{
+				
+			},(err)=>{
+				
+			})
+}
