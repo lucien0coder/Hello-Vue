@@ -7,6 +7,12 @@
     git pull 同步远程仓库
 　　git push -u origin master //把本地库的所有内容推送到远程库上
 
+	从fork项目中更新
+	git clone xxx   本地添加自己的fork项目   cd xxx
+    git remote add ###  xxxx 给自己的仓库添加源项目   git remote -v 查看远程源
+    git fetch ###   切换到源项目上
+    git merge ###/master  进行合并
+
 ---------------------------------------------------
 ssh-keygen -t rsa -C "your_email@youremail.com"
 local:users - name - .ssh - id_rsa.pub

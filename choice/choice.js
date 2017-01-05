@@ -113,7 +113,7 @@ var cv = new Vue({
 		},
 		confirm:function(){
 			// alert(this.pitck_ons[0].name)
-			window.parent.a()
+			window.parent.a('thisidischenxiaohua776453')
 		},
 		addIToPU:function(index,type){
 			var items = type == 0? this.computedRoles:this.computedStaffs
