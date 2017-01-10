@@ -3,14 +3,82 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="./bulma.css">
+	<link rel="stylesheet" href="../bulma.css">
+	<link rel="stylesheet" href="../fa/css/font-awesome.min.css">
 	<link rel="stylesheet" href="sign_up.css">
 </head>
 <body>
-	
+
+<section class="hero is-dark is-fullheight is-bold">
+  <div class="hero-head">
+  	<div class="container">
+      <h1 class="title">
+        吾托帮
+      </h1>
+      <h2 class="subtitle">
+        注册账号
+      </h2>
+  	</div>
+  </div>
+  <div class="hero-body" style="padding-top: 0">
+    <div class="container">
+  	 <div class="columns">
+	  <div class="column is-narrow is-half is-offset-one-quarter">
+	    <div class="box">
+		    <div class="content">
+				<label class="label">账号名称</label>
+				<p class="control">
+				  <input class="input" type="text" placeholder="Text input">
+				</p>
+				<label class="label">Username</label>
+				<p class="control has-icon has-icon-right">
+				  <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+				  <span class="icon is-small">
+				    <i class="fa fa-check"></i>
+				  </span>
+				  <span class="help is-success">This username is available</span>
+				</p>
+				<label class="label">Email</label>
+				<p class="control has-icon has-icon-right">
+				  <input class="input is-danger" type="text" placeholder="Email input" value="hello@">
+				  <span class="icon is-small">
+				    <i class="fa fa-warning"></i>
+				  </span>
+				  <span class="help is-danger">This email is invalid</span>
+				</p>
+				<label class="label">Subject</label>
+				<p class="control">
+				  <span class="select">
+				    <select>
+				      <option>Select dropdown</option>
+				      <option>With options</option>
+				    </select>
+				  </span>
+				</p>
+				<p class="control">
+				  <label class="checkbox">
+				    <input type="checkbox">
+				    Remember me
+				  </label>
+				</p>
+				<div class="control is-grouped">
+				  <p class="control">
+				    <button class="button is-primary">Submit</button>
+				  </p>
+				  <p class="control">
+				    <button class="button is-link">Cancel</button>
+				  </p>
+				</div>
+		    </div>
+	    </div>
+	  </div>
+	</div>
+    </div>
+  </div>
+</section>
 
 
 
-	
+
 </body>
 </html>
