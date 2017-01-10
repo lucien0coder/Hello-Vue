@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<section class="hero is-dark is-fullheight is-bold">
+<section class="hero is-fullheight" style="background-image: linear-gradient(141deg, rgb(249, 153, 34) 0%, #f55555 71%, #e80000 100%);">
   <div class="hero-head">
   	<div class="container">
       <h1 class="title">
@@ -20,53 +20,38 @@
       </h2>
   	</div>
   </div>
-  <div class="hero-body" style="padding-top: 0">
+  <div class="hero-body" style="align-items: baseline;">
     <div class="container">
   	 <div class="columns">
 	  <div class="column is-narrow is-half is-offset-one-quarter">
 	    <div class="box">
 		    <div class="content">
 				<label class="label">账号名称</label>
+				<p class="control is-loading">
+				  <input class="input" type="text" placeholder="如：chanjialiang">
+				  <span class="help is-success">用户账号可以使用</span>
+				</p>
+				<label class="label">密码</label>
 				<p class="control">
-				  <input class="input" type="text" placeholder="Text input">
+				  <input class="input is-success" type="password" placeholder="password" value="bulma">
 				</p>
-				<label class="label">Username</label>
-				<p class="control has-icon has-icon-right">
-				  <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-				  <span class="icon is-small">
-				    <i class="fa fa-check"></i>
-				  </span>
-				  <span class="help is-success">This username is available</span>
-				</p>
-				<label class="label">Email</label>
-				<p class="control has-icon has-icon-right">
-				  <input class="input is-danger" type="text" placeholder="Email input" value="hello@">
-				  <span class="icon is-small">
-				    <i class="fa fa-warning"></i>
-				  </span>
-				  <span class="help is-danger">This email is invalid</span>
-				</p>
-				<label class="label">Subject</label>
+				<label class="label">确认密码</label>
 				<p class="control">
-				  <span class="select">
-				    <select>
-				      <option>Select dropdown</option>
-				      <option>With options</option>
-				    </select>
-				  </span>
+				  <input class="input is-danger" type="password" placeholder="再一次输入密码" value="hello@">
+				  <span class="help is-danger">两次输入的密码不一致</span>
 				</p>
 				<p class="control">
 				  <label class="checkbox">
 				    <input type="checkbox">
-				    Remember me
+				    同意《<a class="is-link">用户使用协议</a>》
 				  </label>
 				</p>
 				<div class="control is-grouped">
 				  <p class="control">
-				    <button class="button is-primary">Submit</button>
+				    <button class="button is-primary">确认</button>
 				  </p>
 				  <p class="control">
-				    <button class="button is-link">Cancel</button>
+				    <button class="button is-link">返回</button>
 				  </p>
 				</div>
 		    </div>
