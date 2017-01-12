@@ -20,38 +20,52 @@
       </h2>
   	</div>
   </div>
-  <div class="hero-body" style="align-items: baseline;">
+  <div class="hero-body" style="align-items: baseline;"  id="sign_up">
     <div class="container">
   	 <div class="columns">
 	  <div class="column is-narrow is-half is-offset-one-quarter">
 	    <div class="box" style="background-color: rgba(255, 255, 255, 0.72);">
 		    <div class="content">
+
 				<label class="label">账号名称</label>
-				<p class="control has-icon is-loading">
-				  <input class="input" type="text" placeholder="如：chanjialiang">
+				<p class="control has-icon" 
+					v-bind:class="{'is-loading':isLoading}">
+				  <input class="input" type="text" placeholder="如：chanjialiang"
+				  	v-bind:class="{'is-success':usefull,'is-danger':unused}"  
+				  	@keyup="checkUA" 
+				  	@blur="UA_enter" 
+				  	v-model="new_UA">
 				  <span class="icon is-small">
 				  	<i class="fa fa-user-o"></i>
 				  </span>
-				  <span class="help is-success">用户账号可以使用</span>
+				  <span class="help is-danger" v-if="is_null">账号不能为空</span>
+				  <span class="help is-success" v-if="usefull">用户账号可以使用</span>
 				</p>
+
 				<label class="label">密码</label>
 				<p class="control has-icon">
-				  <input class="input is-success" type="password" placeholder="password" value="bulma">
+				  <input class="input" type="password" placeholder="password"
+					v-bind:class="{'is-danger':pwdIsNull,'is-success':pwdIsUsefull}"
+					v-model="fPwd"
+				  >
 				  <span class="icon is-small"><i class="fa fa-lock"></i></span>
 				</p>
+
 				<label class="label">确认密码</label>
 				<p class="control has-icon has-icon-right">
 				  <input class="input is-danger" type="password" placeholder="再一次输入密码" value="hello@">
-				  <span class="icon is-small"><i class="fa fa-warning"></i></span>
+				  <!-- <span class="icon is-small"><i class="fa fa-warning"></i></span> -->
 				  <!-- <span class="icon is-small"><i class="fa fa-check"></i></span> -->
 				  <span class="help is-danger">两次输入的密码不一致</span>
 				</p>
+
 				<p class="control">
 				  <label class="checkbox">
 				    <input type="checkbox">
 				    同意《<a class="is-link">用户使用协议</a>》
 				  </label>
 				</p>
+
 				<div class="control is-grouped">
 				  <p class="control">
 				    <button class="button is-success is-disabled">确认</button>
@@ -68,7 +82,8 @@
   </div>
 </section>
 
-
+<script src="../vue.js"></script>
+<script src="sign_up.js"></script>
 
 
 </body>
