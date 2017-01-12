@@ -25,21 +25,20 @@
   	 <div class="columns">
 	  <div class="column is-narrow is-half is-offset-one-quarter">
 	    <div class="box" style="background-color: rgba(255, 255, 255, 0.72);">
-		    <div class="content">
-
+		    <form class="content">
 				<label class="label">账号名称</label>
 				<p class="control has-icon" 
 					v-bind:class="{'is-loading':isLoading}">
 				  <input class="input" type="text" placeholder="如：chanjialiang"
-				  	v-bind:class="{'is-success':usefull,'is-danger':unused}"  
-				  	@keyup="checkUA" 
-				  	@blur="UA_enter" 
+				  	v-bind:class="{'is-success':usefull,'is-danger':uaIsNull}"  
+				  	@keyup="checkUA"
+				  	@blur="UA_enter"
 				  	v-model="new_UA">
 				  <span class="icon is-small">
 				  	<i class="fa fa-user-o"></i>
 				  </span>
-				  <span class="help is-danger" v-if="is_null">账号不能为空</span>
-				  <span class="help is-success" v-if="usefull">用户账号可以使用</span>
+				  <span class="help is-danger" v-if="uaIsNull">账号不能为空</span>
+				  <span class="help is-success" v-if="usefull">此账号可以使用</span>
 				</p>
 
 				<label class="label">密码</label>
@@ -47,16 +46,23 @@
 				  <input class="input" type="password" placeholder="password"
 					v-bind:class="{'is-danger':pwdIsNull,'is-success':pwdIsUsefull}"
 					v-model="fPwd"
+					@blur="pwd_enter"
+					@keyup="checkPWD"
 				  >
+				  <span class="help is-danger" v-if="pwdIsNull">密码不能为空</span>
 				  <span class="icon is-small"><i class="fa fa-lock"></i></span>
 				</p>
 
 				<label class="label">确认密码</label>
 				<p class="control has-icon has-icon-right">
-				  <input class="input is-danger" type="password" placeholder="再一次输入密码" value="hello@">
-				  <!-- <span class="icon is-small"><i class="fa fa-warning"></i></span> -->
-				  <!-- <span class="icon is-small"><i class="fa fa-check"></i></span> -->
-				  <span class="help is-danger">两次输入的密码不一致</span>
+				  <input class="input" type="password" placeholder="再一次输入密码" 
+					v-bind:class="{'is-danger':pwdIsWrong,'is-success':pwdIsCorrect}"
+					@blur="sPwd_check"
+					v-model="sPwd"
+				  >
+				  <span class="icon is-small" v-if="pwdIsWrong"><i class="fa fa-warning"></i></span>
+				  <span class="icon is-small" v-if="pwdIsCorrect"><i class="fa fa-check"></i></span>
+				  <span class="help is-danger" v-if="pwdIsWrong">两次输入的密码不一致</span>
 				</p>
 
 				<p class="control">
@@ -74,7 +80,7 @@
 				    <button class="button is-link">返回</button>
 				  </p>
 				</div>
-		    </div>
+		    </form>
 	    </div>
 	  </div>
 	</div>
