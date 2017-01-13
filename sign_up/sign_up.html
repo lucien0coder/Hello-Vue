@@ -33,23 +33,23 @@
 				  	v-bind:class="{'is-success':usefull,'is-danger':uaIsNull}"  
 				  	@keyup="checkUA"
 				  	@blur="UA_enter"
-				  	v-model="new_UA">
+				  	v-model.trim="new_UA">
 				  <span class="icon is-small">
 				  	<i class="fa fa-user-o"></i>
 				  </span>
-				  <span class="help is-danger" v-if="uaIsNull">账号不能为空</span>
-				  <span class="help is-success" v-if="usefull">此账号可以使用</span>
+				  <span class="help is-danger" v-show="uaIsNull">账号不能为空</span>
+				  <span class="help is-success" v-show="usefull">此账号可以使用</span>
 				</p>
 
 				<label class="label">密码</label>
 				<p class="control has-icon">
 				  <input class="input" type="password" placeholder="password"
 					v-bind:class="{'is-danger':pwdIsNull,'is-success':pwdIsUsefull}"
-					v-model="fPwd"
+					v-model.trim="fPwd"
 					@blur="pwd_enter"
 					@keyup="checkPWD"
 				  >
-				  <span class="help is-danger" v-if="pwdIsNull">密码不能为空</span>
+				  <span class="help is-danger" v-show="pwdIsNull">密码不能为空</span>
 				  <span class="icon is-small"><i class="fa fa-lock"></i></span>
 				</p>
 
@@ -58,24 +58,27 @@
 				  <input class="input" type="password" placeholder="再一次输入密码" 
 					v-bind:class="{'is-danger':pwdIsWrong,'is-success':pwdIsCorrect}"
 					@blur="sPwd_check"
-					v-model="sPwd"
+					v-model.trim="sPwd"
 				  >
-				  <span class="icon is-small" v-if="pwdIsWrong"><i class="fa fa-warning"></i></span>
-				  <span class="icon is-small" v-if="pwdIsCorrect"><i class="fa fa-check"></i></span>
-				  <span class="help is-danger" v-if="pwdIsWrong">两次输入的密码不一致</span>
+				  <span class="icon is-small" v-show="pwdIsWrong"><i class="fa fa-warning"></i></span>
+				  <span class="icon is-small" v-show="pwdIsCorrect"><i class="fa fa-check"></i></span>
+				  <span class="help is-danger" v-show="pwdIsWrong">两次输入的密码不一致</span>
+				  <span class="help is-success" v-show="pwdIsCorrect">密码设置成功</span>
 				</p>
 
 				<p class="control">
-				  <label class="checkbox">
-				    <input type="checkbox">
-				    同意《<a class="is-link">用户使用协议</a>》
+				  <label class="checkbox"
+				  	v-bind:class="{'a-is-check':hasCheck,'a-un-check':!hasCheck}"
+				  	>
+				    <input type="checkbox" v-model="hasCheck">
+				    同意《<a class="is-link" @click="viewDetails=true">用户使用协议</a>》
 				  </label>
 				</p>
 
 				<div class="control is-grouped">
 				  <p class="control">
 				    <button class="button is-success"
-						v-bind:class="{'is-disabled':isAbled}"
+						v-bind:class="{'is-disabled':!hasCheck}"
 				    >确认</button>
 				  </p>
 				  <p class="control">
@@ -87,8 +90,31 @@
 	  </div>
 	</div>
     </div>
+
+	<!-- 蒙版 -->
+	<div class="modal" v-bind:class="{'is-active':viewDetails}">
+	  <div class="modal-background"></div>
+	  <div class="modal-card">
+	    <header class="modal-card-head">
+	      <p class="modal-card-title">用户使用协议</p>
+	      <button class="delete" @click="hasCheck=false;viewDetails=false"
+	      ></button>
+	    </header>
+	    <section class="modal-card-body">
+	      <div class="message-body">
+		    Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+		  </div>
+	    </section>
+	    <footer class="modal-card-foot">
+	      <a class="button is-primary" @click="hasCheck=true;viewDetails=false"
+	      >同意</a>
+	    </footer>
+	  </div>
+	</div>
+
   </div>
 </section>
+	
 
 <script src="../vue.js"></script>
 <script src="sign_up.js"></script>

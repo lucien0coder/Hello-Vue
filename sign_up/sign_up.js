@@ -11,18 +11,8 @@ var vm = new Vue({
 		pwdIsCorrect:false,
 		pwdIsWrong:false,
 		sPwd:'',
-		isAbled:true
-	},
-	computed:{
-		trim_UA:function(){
-			return this.new_UA.trim()
-		},
-		trim_pwd:function(){
-			return this.fPwd.trim()
-		},
-		trim_sPwd:function(){
-			return this.sPwd.trim()
-		}
+		hasCheck:false,
+		viewDetails:false
 	},
 	created:function(){
 		console.log('vue created!')
@@ -30,10 +20,10 @@ var vm = new Vue({
 	methods:{
 		checkUA:function(){//输入过程监听
 			this.uaIsNull = false
-			if(''!=this.trim_UA) console.log(this.trim_UA);
+			if(''!=this.new_UA) console.log(this.new_UA);
 		},
 		UA_enter:function(){//失焦验证
-			if(''==this.trim_UA) {this.uaIsNull = true;this.usefull = false}
+			if(''==this.new_UA) {this.uaIsNull = true;this.usefull = false}
 				else{//请问用户名是否存在
 					this.isLoading = true//验证后，取消loading
 					this.usefull = true
@@ -41,22 +31,22 @@ var vm = new Vue({
 		},
 		checkPWD:function(){
 			this.pwdIsNull=false
-			if(''!=this.trim_pwd){this.pwdIsUsefull=true}
+			if(''!=this.fPwd){this.pwdIsUsefull=true}
 		},
 		pwd_enter:function(){
-			if(''==this.trim_pwd) {this.pwdIsNull=true;this.pwdIsUsefull=false;}
+			if(''==this.fPwd) {this.pwdIsNull=true;this.pwdIsUsefull=false;}
 				else{
 
 				}
 		},
 		sPwd_check:function(){
-			if(this.trim_pwd == this.trim_sPwd){this.pwdIsCorrect=true;this.pwdIsWrong=false}
-				else{this.pwdIsWrong=true;this.pwdIsCorrect=true}
+			if(''!=this.fPwd){//不为空才执行
+				if(this.fPwd == this.sPwd){this.pwdIsCorrect=true;this.pwdIsWrong=false}
+					else{this.pwdIsWrong=true;this.pwdIsCorrect=false}
+			}
+		},
+		showDetails:function(){
+			this.viewDetails = true
 		}
 	}
-
-
-
-
-
 });

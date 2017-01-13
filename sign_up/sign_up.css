@@ -1,3 +1,11 @@
 .input{
 	background-color: rgba(255, 255, 255, 0.8);
 }
+.a-is-check{
+    border: solid 1px #23d160;
+    padding: 5px;
+}
+.a-un-check{
+    border: solid 1px #dbdbdb;
+    padding: 5px;
+}
