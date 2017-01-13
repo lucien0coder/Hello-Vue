@@ -74,7 +74,9 @@
 
 				<div class="control is-grouped">
 				  <p class="control">
-				    <button class="button is-success is-disabled">确认</button>
+				    <button class="button is-success"
+						v-bind:class="{'is-disabled':isAbled}"
+				    >确认</button>
 				  </p>
 				  <p class="control">
 				    <button class="button is-link">返回</button>

@@ -11,6 +11,7 @@ var vm = new Vue({
 		pwdIsCorrect:false,
 		pwdIsWrong:false,
 		sPwd:'',
+		isAbled:true
 	},
 	computed:{
 		trim_UA:function(){
