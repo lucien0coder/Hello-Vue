@@ -49,6 +49,9 @@ var vm = new Vue({
 		},
 		showDetails:function(){
 			this.viewDetails = true
+		},
+		submit:function(){
+			alert('hello user')
 		}
 	}
 });

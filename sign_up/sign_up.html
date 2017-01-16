@@ -26,7 +26,7 @@
   	 <div class="columns">
 	  <div class="column is-narrow is-half is-offset-one-quarter">
 	    <div class="box" style="background-color: rgba(255, 255, 255, 0.72);">
-		    <form class="content">
+		    <form class="content" @submit.prevent="submit">
 				<label class="label">账号名称</label>
 				<p class="control has-icon" 
 					v-bind:class="{'is-loading':isLoading}">
@@ -81,7 +81,7 @@
 				    >确认</button>
 				  </p>
 				  <p class="control">
-				    <button class="button is-link">返回</button>
+				    <button class="button is-link" type="submit">返回</button>
 				  </p>
 				</div>
 		    </form>
