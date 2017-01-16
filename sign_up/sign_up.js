@@ -14,14 +14,16 @@ var vm = new Vue({
 		hasCheck:false,
 		viewDetails:false
 	},
+	watch:{
+		new_UA:function(ua){//输入过程监听
+			this.uaIsNull = false
+			if(''!=this.new_UA) console.log(this.new_UA);
+		}
+	}
 	created:function(){
 		console.log('vue created!')
 	},
 	methods:{
-		checkUA:function(){//输入过程监听
-			this.uaIsNull = false
-			if(''!=this.new_UA) console.log(this.new_UA);
-		},
 		UA_enter:function(){//失焦验证
 			if(''==this.new_UA) {this.uaIsNull = true;this.usefull = false}
 				else{//请问用户名是否存在
