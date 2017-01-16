@@ -32,7 +32,6 @@
 					v-bind:class="{'is-loading':isLoading}">
 				  <input class="input" type="text" placeholder="如：chanjialiang"
 				  	v-bind:class="{'is-success':usefull,'is-danger':uaIsNull}"  
-				  	@keyup="checkUA"
 				  	@blur="UA_enter"
 				  	v-model.trim="new_UA">
 				  <span class="icon is-small">
@@ -48,7 +47,6 @@
 					v-bind:class="{'is-danger':pwdIsNull,'is-success':pwdIsUsefull}"
 					v-model.trim="fPwd"
 					@blur="pwd_enter"
-					@keyup="checkPWD"
 				  >
 				  <span class="help is-danger" v-show="pwdIsNull">密码不能为空</span>
 				  <span class="icon is-small"><i class="fa fa-lock"></i></span>

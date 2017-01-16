@@ -18,8 +18,12 @@ var vm = new Vue({
 		new_UA:function(ua){//输入过程监听
 			this.uaIsNull = false
 			if(''!=this.new_UA) console.log(this.new_UA);
+		},
+		fPwd:function(pwd){
+			this.pwdIsNull=false
+			if(''!=this.fPwd){this.pwdIsUsefull=true}
 		}
-	}
+	},
 	created:function(){
 		console.log('vue created!')
 	},
@@ -30,10 +34,6 @@ var vm = new Vue({
 					this.isLoading = true//验证后，取消loading
 					this.usefull = true
 				}
-		},
-		checkPWD:function(){
-			this.pwdIsNull=false
-			if(''!=this.fPwd){this.pwdIsUsefull=true}
 		},
 		pwd_enter:function(){
 			if(''==this.fPwd) {this.pwdIsNull=true;this.pwdIsUsefull=false;}
