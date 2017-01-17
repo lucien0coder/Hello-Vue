@@ -27,3 +27,33 @@ function GetAPost(){
 				
 			})
 }
+
+function DelelteAPost(){
+	Vue.http
+		.delete('',{
+			params:{
+				id:1,
+				value:'name'
+			}
+		})
+			.then((res)=>{
+				
+			},(err)=>{
+				
+			})
+}
+
+function PutAPost(){
+	Vue.http
+		.put('',new FormatData(),{
+			params:{
+				id:1,
+				value:'name'
+			}
+		})
+			.then((res)=>{
+				
+			},(err)=>{
+				
+			})
+}
