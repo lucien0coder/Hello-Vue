@@ -52,13 +52,19 @@
 		  	<span>South China University of Technology</span>
 		  </div>
 		  <div class="content" style="border-top: 1px solid #ece8e8;">
-		  	<div style="padding: 1.5rem 0 1.5rem 0;">
+		  	<div class="edit_btn">
 	  		  <a class="button">
 		        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
 		        <span>修改基础信息</span>
 		  	  </a>
 		  	</div>
-		  	<div>
+		  	<div class="edit_btn">
+			  <a class="button">
+			    <span class="icon"><i class="fa fa-unlock-alt"></i></span>
+			    <span>重置安全信息</span>
+			  </a>
+		  	</div>
+		  	<div class="edit_btn">
 			  <a class="button">
 			    <span class="icon"><i class="fa fa-check-square-o"></i></span>
 			    <span>增加认证信息</span>
@@ -68,11 +74,54 @@
 	    </div>
 	  </div>
 	  <div class="tile is-parent">
-	    <div class="tile is-child">
-	      <p class="title">Three</p>
-	      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
-	      <p>Suspendisse varius ligula in molestie lacinia. Maecenas varius eget ligula a sagittis. Pellentesque interdum, nisl nec interdum maximus, augue diam porttitor lorem, et sollicitudin felis neque sit amet erat. Maecenas imperdiet felis nisi, fringilla luctus felis hendrerit sit amet. Aenean vitae gravida diam, finibus dignissim turpis. Sed eget varius ligula, at volutpat tortor.</p>
-	      <p>Integer sollicitudin, tortor a mattis commodo, velit urna rhoncus erat, vitae congue lectus dolor consequat libero. Donec leo ligula, maximus et pellentesque sed, gravida a metus. Cras ullamcorper a nunc ac porta. Aliquam ut aliquet lacus, quis faucibus libero. Quisque non semper leo.</p>
+	    <div class="tile is-child content">
+		  <h4><em>账号默认配置</em></h4>
+		  <hr>
+		  <div class="container">
+			<div class="notification is-warning">
+			   <small> 介绍下什么是 <strong> 「默认单位」</strong> ？</small>
+			</div>
+		  	<div class="control is-horizontal">
+			  <div class="control-label">
+			    <label class="label">当前默认单位</label>
+			  </div>
+			  <div class="control">
+			    <div class="select is-fullwidth">
+			      <select>
+			        <option>华南理工大学</option>
+			      </select>
+			    </div>
+			  </div>
+			</div>
+			<div class="notification is-warning">
+			    <small>说说什么是 <strong> 「默认打开帮区」</strong> ？</small>
+			</div>
+			<div class="control is-horizontal">
+			  <div class="control-label">
+			    <label class="label">默认打开帮区</label>
+			  </div>
+			  <div class="control">
+			    <div class="select is-fullwidth">
+			      <select>
+			        <option>B8实验室</option>
+			      </select>
+			    </div>
+			  </div>
+			</div>
+			<div class="content">
+				<hr>
+				<h4><em>账号认证信息</em></h4>
+				<hr>
+				<ul>
+			      <li><label>用户账号：</label>Donec blandit a lorem id convallis.</li>
+			      <li><label>手机号码：</label>Cras gravida arcu at diam gravida gravida.</li>
+			      <li><label>电子邮箱：</label>Integer in volutpat libero.</li>
+			      <li><label>身份证号：</label>Donec a diam tellus.</li>
+			      <li><label>证件快照：</label>Aenean nec tortor orci.</li>
+			    </ul>
+			</div>
+
+		  </div>
 	    </div>
 	  </div>
 	</div>
