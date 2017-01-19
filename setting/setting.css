@@ -1,0 +1,20 @@
+.authentication{
+    width: 150px;
+    top: -40px;
+    left: 70px;
+	text-align: center;
+    font-size: xx-large;
+    position: absolute;
+    margin: 0.1em;
+    border: 0.5rem solid;
+    transform: rotate(7deg)
+    -ms-transform:rotate(7deg); 	/* IE 9 */
+	-moz-transform:rotate(7deg); 	/* Firefox */
+	-webkit-transform:rotate(7deg); /* Safari 和 Chrome */
+	-o-transform:rotate(7deg); 	/* Opera */
+}
+
+.heig_class_atc{
+	color: rgba(247, 0, 228, 0.42);
+	border: 0.5rem solid rgba(247, 0, 228, 0.25);
+}
