@@ -24,8 +24,8 @@
 }
 
 section{
-	background: -webkit-linear-gradient(left top, rgb(201, 255, 142) , rgb(249, 147, 75)); /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(bottom right, rgb(201, 255, 142), rgb(249, 147, 75)); /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(bottom right, rgb(201, 255, 142), rgb(249, 147, 75)); /* Firefox 3.6 - 15 */
-    background: linear-gradient(to bottom right, rgb(201, 255, 142) , rgb(249, 147, 75)); /* 标准的语法（必须放在最后） */
+	background: -webkit-linear-gradient(left top, rgb(230, 255, 202) , rgb(255, 207, 173)); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(bottom right, rgb(230, 255, 202), rgb(255, 207, 173)); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(bottom right, rgb(230, 255, 202), rgb(255, 207, 173)); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom right, rgb(230, 255, 202) , rgb(255, 207, 173)); /* 标准的语法（必须放在最后） */
 }
