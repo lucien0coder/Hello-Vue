@@ -14,37 +14,31 @@
 		<div class="tile is-ancestor">
 			<div class="tile is-parent">
 				<article class="tile is-child">
-					<nav class="panel">
+					<nav class="panel" style="position: fixed;z-index: 1000;">
 					  <p class="panel-heading">
 					    修改个人账号信息
 					  </p>
-					  <a class="panel-block is-active">
+					  <a href="#edit_profile" class="panel-block">
 					    <span class="panel-icon">
-					      <i class="fa fa-book"></i>
-					    </span>
-					    修改头像
-					  </a>
-					  <a class="panel-block">
-					    <span class="panel-icon">
-					      <i class="fa fa-book"></i>
+					      <i class="fa fa-id-card"></i>
 					    </span>
 					    修改资料
 					  </a>
-					  <a class="panel-block">
+					  <a href="#reset_pwd" class="panel-block">
 					    <span class="panel-icon">
-					      <i class="fa fa-book"></i>
+					      <i class="fa fa-unlock-alt"></i>
 					    </span>
 					    重置密码
 					  </a>
-					  <a class="panel-block">
+					  <a href="#authen" class="panel-block">
 					    <span class="panel-icon">
-					      <i class="fa fa-book"></i>
+					      <i class="fa fa-check-square-o"></i>
 					    </span>
-					    修改认证信息
+					    增加认证信息
 					  </a>
-					  <a class="panel-block">
+					  <a href="#help" class="panel-block">
 					    <span class="panel-icon">
-					      <i class="fa fa-book"></i>
+					      <i class="fa fa-question-circle"></i>
 					    </span>
 					    在线客服
 					  </a>
@@ -56,10 +50,98 @@
 					</nav>
 				</article>
 				</div>
-				<div class="tile is-parent is-9">
+				<div class="tile is-parent is-9 content">
 					<article class="tile is-child">
-						<p class="tile">Two</p>
-						<p class="subtitle">subtitle</p>
+						<h1 class="tile"><a name="edit_profile"></a>个人资料</h1>
+						<div class="content hero" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+									<div class="columns">
+									  <div class="column is-two-thirds">
+										<label class="label">账号名称</label>
+										<p class="control">
+										  <input disabled class="input" type="text" value="zhanghaitao">
+										</p>
+										<label class="label">用户名称</label>
+										<p class="control has-icon has-icon-right">
+										  <input class="input is-success" type="text" placeholder="其他用户能记住你的名字" value="张海涛">
+										  <span class="icon is-small">
+										    <i class="fa fa-check"></i>
+										  </span>
+										  <span class="help is-success">This username is available</span>
+										</p>
+										<label class="label">你所在地址</label>
+										<p class="control">
+										  <input class="input" type="text" value="中国,广东">
+										</p>
+										<label class="label">简介</label>
+										<p class="control">
+										  <textarea class="textarea" placeholder="输入个人简介"></textarea>
+										</p>
+									  </div>
+									  <div class="column">
+										<label class="label">编辑头像</label>
+										<figure class="image is-128x128">
+										  <img src="img.jpg">
+										</figure>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					    <button class="button is-primary">确定</button>
+
+						<h1 class="tile"><a name="reset_pwd"></a>重置密码</h1>
+						<div class="content hero" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+									<div class="control is-horizontal">
+									  <div class="control-label">
+									    <label class="label">旧密码</label>
+									  </div>
+									  <div class="control">
+									      <input class="input" type="text" placeholder="Name">
+									  </div>
+									</div>
+									<div class="control is-horizontal">
+									  <div class="control-label">
+									    <label class="label">新密码</label>
+									  </div>
+									  <div class="control">
+									      <input class="input" type="text" placeholder="Name">
+									  </div>
+									</div>
+									<div class="control is-horizontal">
+									  <div class="control-label">
+									    <label class="label">重复密码</label>
+									  </div>
+									  <div class="control">
+									      <input class="input" type="text" placeholder="Name">
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+				        <button class="button is-primary">确定</button>
+						
+						<h1 class="tile"><a name="authen"></a>认证信息</h1>
+						<div class="content hero is-large" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+									
+								</div>
+							</div>
+						</div>
+						<button class="button is-primary">确定</button>
+
+						<h1 class="tile"><a name="help"></a>联系客服</h1>
+						<div class="content hero is-large" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+								<h2 class="title">吾托帮</h2>
+								</div>
+							</div>
+						</div>
 					</article>
 				</div>
 		  </div>
