@@ -29,3 +29,13 @@ section{
     background: -moz-linear-gradient(bottom right, rgb(230, 255, 202), rgb(255, 207, 173)); /* Firefox 3.6 - 15 */
     background: linear-gradient(to bottom right, rgb(230, 255, 202) , rgb(255, 207, 173)); /* 标准的语法（必须放在最后） */
 }
+
+.shield_poi{
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+.is_level{
+    background-color: #ffdd57;
+    border-radius: 5px;
+}
