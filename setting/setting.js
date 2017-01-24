@@ -1,0 +1,1 @@
+var personal_info = {template: 'personal.vue'}
