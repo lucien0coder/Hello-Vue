@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../bulma.css">
+	<link rel="stylesheet" href="../fa/css/font-awesome.css">
+	<link rel="stylesheet" href="setting.css">
+  	<script src="../vue.js"></script>
+  	<script src="../vue-router.js"></script>
+  	<!-- <script src="setting.js"></script> -->
+<body>
+	<div id="personal_setting">
+		<router-link to="/info">Go info</router-link>
+		<router-link to="/setting">Go setting</router-link>
+
+		<section class="section">
+			<div class="container">
+				<router-view></router-view>
+			</div>
+		</section>
+	</div>
+
+
+	<script>
+		var personal_info = {template: 'personal.vue'}
+		var personal_setting = {template: 'personal_setting.vue'}
+
+		var routes = [
+			{path:'/info', component: personal_info},
+			{path:'/setting', component:personal_setting}
+		]
+
+		var router = new VueRouter({
+			routes :routes
+		})
+
+		var vm = new Vue({
+			router: router
+		}).$mount('#personal_setting')
+	</script>
+</body>
+
+</html>
