@@ -11,17 +11,12 @@
   	<script src="setting.js"></script>
 <body>
 	<div id="app">
-		<router-link to="/setting">Go setting</router-link>
-		<router-link to="/info">Go info</router-link>
-
 		<section class="section">
 			<div class="container">
 				<router-view></router-view>
 			</div>
 		</section>
 	</div>
-
-
 
 	<template id="ps">
 			<div class="tile is-ancestor">
@@ -57,7 +52,7 @@
 					  </a>
 					  <div class="panel-block">
 					    <button class="button is-primary is-outlined is-fullwidth">
-					      预览个人信息
+					      <router-link to="/">预览个人信息</router-link>
 					    </button>
 					  </div>
 					</nav>
@@ -276,19 +271,19 @@
 				  	<div class="edit_btn">
 			  		  <a class="button">
 				        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
-				        <span>修改基础信息</span>
+				        <span><router-link to="/setting">修改基础信息</router-link></span>
 				  	  </a>
 				  	</div>
 				  	<div class="edit_btn">
 					  <a class="button">
 					    <span class="icon"><i class="fa fa-unlock-alt"></i></span>
-					    <span>重置安全信息</span>
+					    <span><router-link to="/setting">重置安全信息</router-link></span>
 					  </a>
 				  	</div>
 				  	<div class="edit_btn">
 					  <a class="button">
 					    <span class="icon"><i class="fa fa-check-square-o"></i></span>
-					    <span>增加认证信息</span>
+					    <span><router-link to="/setting">增加认证信息</router-link></span>
 					  </a>
 				  	</div>
 				  </div>
@@ -353,7 +348,7 @@
 		var persons = {template: '#ps'}
 
 		var routes = [
-			{path:'/info', component: personi},
+			{path:'/', component: personi},
 			{path:'/setting', component: persons}
 		]
 
