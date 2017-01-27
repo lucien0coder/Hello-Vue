@@ -8,11 +8,11 @@
 	<link rel="stylesheet" href="setting.css">
   	<script src="../vue.js"></script>
   	<script src="../vue-router.js"></script>
-  	<!-- <script src="setting.js"></script> -->
+  	<script src="setting.js"></script>
 <body>
-	<div id="personal_setting">
-		<router-link to="/info">Go info</router-link>
+	<div id="app">
 		<router-link to="/setting">Go setting</router-link>
+		<router-link to="/info">Go info</router-link>
 
 		<section class="section">
 			<div class="container">
@@ -22,13 +22,339 @@
 	</div>
 
 
+
+	<template id="ps">
+			<div class="tile is-ancestor">
+			<div class="tile is-parent">
+				<article class="tile is-child">
+					<nav class="panel" style="position: fixed;z-index: 1000;">
+					  <p class="panel-heading">
+					    修改个人账号信息
+					  </p>
+					  <a href="#edit_profile" class="panel-block is-active">
+					    <span class="panel-icon">
+					      <i class="fa fa-id-card"></i>
+					    </span>
+					    修改资料
+					  </a>
+					  <a href="#reset_pwd" class="panel-block">
+					    <span class="panel-icon">
+					      <i class="fa fa-unlock-alt"></i>
+					    </span>
+					    重置密码
+					  </a>
+					  <a href="#authen" class="panel-block">
+					    <span class="panel-icon">
+					      <i class="fa fa-check-square-o"></i>
+					    </span>
+					    增加认证信息
+					  </a>
+					  <a href="#help" class="panel-block">
+					    <span class="panel-icon">
+					      <i class="fa fa-question-circle"></i>
+					    </span>
+					    在线客服
+					  </a>
+					  <div class="panel-block">
+					    <button class="button is-primary is-outlined is-fullwidth">
+					      预览个人信息
+					    </button>
+					  </div>
+					</nav>
+				</article>
+				</div>
+				<div class="tile is-parent is-9 content">
+					<article class="tile is-child">
+						<h1 class="tile"><a name="edit_profile"></a>个人资料</h1>
+						<div class="content hero" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+									<div class="columns">
+									  <div class="column is-two-thirds">
+										<label class="label">账号名称</label>
+										<p class="control">
+										  <input disabled class="input" type="text" value="zhanghaitao">
+										</p>
+										<label class="label">用户名称</label>
+										<p class="control has-icon has-icon-right">
+										  <input class="input is-success" type="text" placeholder="其他用户能记住你的名字" value="张海涛">
+										  <span class="icon is-small">
+										    <i class="fa fa-check"></i>
+										  </span>
+										  <span class="help is-success">This username is available</span>
+										</p>
+										<label class="label">你所在地址</label>
+										<p class="control">
+										  <input class="input" type="text" value="中国,广东">
+										</p>
+										<label class="label">简介</label>
+										<p class="control">
+										  <textarea class="textarea" placeholder="输入个人简介"></textarea>
+										</p>
+									  </div>
+									  <div class="column">
+										<label class="label">编辑头像</label>
+										<figure class="image is-128x128">
+										  <img src="img.jpg">
+										</figure>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					    <button class="button is-primary">确定修改</button>
+
+						<h1 class="tile"><a name="reset_pwd"></a>重置密码</h1>
+						<div class="content hero" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+									<div class="control is-horizontal">
+									  <div class="control-label">
+									    <label class="label">旧密码</label>
+									  </div>
+									  <div class="control">
+									      <input class="input" type="text" placeholder="Name">
+									  </div>
+									</div>
+									<div class="control is-horizontal">
+									  <div class="control-label">
+									    <label class="label">新密码</label>
+									  </div>
+									  <div class="control">
+									      <input class="input" type="text" placeholder="Name">
+									  </div>
+									</div>
+									<div class="control is-horizontal">
+									  <div class="control-label">
+									    <label class="label">重复密码</label>
+									  </div>
+									  <div class="control">
+									      <input class="input" type="text" placeholder="Name">
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+				        <button class="button is-primary">确定修改</button>
+						
+						<h1 class="tile"><a name="authen"></a>认证信息</h1>
+						<div class="content hero" style="border-radius: 0.4em;">
+							<div class="hero-body">
+								<div class="container">
+									<div class="columns">
+									  <div class="column is-2 shield_poi">
+								      	<span class="icon is-medium"><i class="fa fa-shield"></i></span>
+									  </div>
+									  <div class="column is-6">
+									    <p class="notification">
+											<strong>账号：</strong> zhanghaitao
+									    </p>
+									  </div>
+									  <div class="column">
+									    <p class="notification">
+											<span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span>
+									    </p>
+									  </div>
+									</div>
+
+									<div class="columns">
+									  <div class="column is-2 shield_poi">
+								      	<span style="color:#3273dc" class="icon is-medium"><i class="fa fa-shield"></i></span>
+									  </div>
+									  <div class="column is-6">
+									    <p class="notification">
+									    	<strong>手机号码：</strong> 1387*****12
+									    </p>
+									  </div>
+									  <div class="column">
+									    <p class="notification"><span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span></p>
+									  </div>
+									  <div class="column">
+									    <p class="notification"><a>修改</a></p>
+									  </div>
+									</div>
+
+									<div class="columns">
+									  <div class="column is-2"></div>
+									  <div class="column is-6">
+									    <p class="notification">
+									    	<strong>电子邮箱：</strong> kulo***@qq.com
+									    </p>
+									  </div>
+									  <div class="column">
+									    <p class="notification" style="color:#ffdd57"><span class="icon"><i class="fa fa-exclamation-triangle"></i></span></p>
+									  </div>
+									  <div class="column">
+									    <p class="notification"><a>验证</a></p>
+									  </div>
+									</div>
+
+									<div class="columns">
+									  <div class="column is-2 shield_poi">
+								      	<span style="color:#ff2b56"  class="icon is-medium"><i class="fa fa-shield"></i></span>
+									  </div>
+									  <div class="column is-6">
+									    <p class="notification"><strong>身份证号：</strong> 4440************549</p>
+									  </div>
+									  <div class="column">
+									    <p class="notification">
+									      <span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span>
+									    </p>
+									  </div>
+									</div>
+
+									<div class="columns">
+									  <div class="column is-2 shield_poi">
+								      	<span style="color:#ce38ff" class="icon is-medium"><i class="fa fa-shield"></i></span>
+									  </div>
+									  <div class="column is-1">
+									      <figure class="image is-48x48">
+											<img src="img.jpg">
+										  </figure>
+									  </div>
+									  <div class="column is-1">
+									      <figure class="image is-48x48">
+											<img src="img.jpg">
+										  </figure>
+									  </div>
+									  <div class="column" style="padding-top: 1rem;">
+									  	<span class="icon is-large"><a class="fa fa-plus-square-o"></a></span>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button class="button is-primary">确定修改</button>
+					</article>
+				</div>
+		  </div>
+
+	</template>
+
+	<template id="pi">
+			<div class="tile is-ancestor">
+			  <div class="tile is-4 is-vertical is-parent">
+			    <div class="tile is-child" style="border-bottom: 1px solid #ece8e8;">
+		          <figure class="image is-3by2">
+		            <img src="img.jpg" style="border-radius: 0.4em;width: 70%;left:10%">
+		          </figure>
+			      <div class="hero-body" style="padding: 1rem;">
+			        <div class="container">
+			          <h1 class="title" style="margin-bottom: 0.5rem;">
+			            张海涛
+			          </h1>
+			          <h1 class="authentication heig_class_atc">高级认证</h1>
+			          <h2 class="subtitle">
+			            @zhanghaitao
+			          </h2>
+			          <blockquotes class="subtitle is-6" style="color: darkgray;">
+			        	一个勤勤恳恳种代码的农夫
+			          </blockquotes>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="tile is-child">
+			      <div class="content">
+		            <span class="icon">
+		              <i class="fa fa-clock-o"></i>	
+		            </span>
+		            <span>11:09 PM - 1 Jan 2016</span>
+		          </div>
+			      <div class="content">
+			    	<span class="icon">
+		              <i class="fa fa-map-marker"></i>	
+		            </span>
+		            <span>China, GuangDong</span>
+			      </div>
+				  <div class="content">
+				  	<span class="icon">
+				  	  <i class="fa fa-building"></i>
+				  	</span>
+				  	<span>South China University of Technology</span>
+				  </div>
+				  <div class="content" style="border-top: 1px solid #ece8e8;">
+				  	<div class="edit_btn">
+			  		  <a class="button">
+				        <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
+				        <span>修改基础信息</span>
+				  	  </a>
+				  	</div>
+				  	<div class="edit_btn">
+					  <a class="button">
+					    <span class="icon"><i class="fa fa-unlock-alt"></i></span>
+					    <span>重置安全信息</span>
+					  </a>
+				  	</div>
+				  	<div class="edit_btn">
+					  <a class="button">
+					    <span class="icon"><i class="fa fa-check-square-o"></i></span>
+					    <span>增加认证信息</span>
+					  </a>
+				  	</div>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="tile is-parent">
+			    <div class="tile is-child content">
+				  <h4><em>账号默认配置</em></h4>
+				  <hr>
+				  <div class="container">
+					<div class="notification is-warning">
+					   <small> 介绍下什么是 <strong> 「默认单位」</strong> ？</small>
+					</div>
+				  	<div class="control is-horizontal">
+					  <div class="control-label">
+					    <label class="label">当前默认单位</label>
+					  </div>
+					  <div class="control">
+					    <div class="select is-fullwidth">
+					      <select>
+					        <option>华南理工大学</option>
+					      </select>
+					    </div>
+					  </div>
+					</div>
+					<div class="notification is-warning">
+					    <small>说说什么是 <strong> 「默认打开帮区」</strong> ？</small>
+					</div>
+					<div class="control is-horizontal">
+					  <div class="control-label">
+					    <label class="label">默认打开帮区</label>
+					  </div>
+					  <div class="control">
+					    <div class="select is-fullwidth">
+					      <select>
+					        <option>B8实验室</option>
+					      </select>
+					    </div>
+					  </div>
+					</div>
+					<div class="content">
+						<hr>
+						<h4><em>账号认证信息</em></h4>
+						<hr>
+						<ul>
+					      <li><label>用户账号：</label>zhanghaitao</li>
+					      <li><label>手机号码：</label>1367*****93</li>
+					      <li><label>电子邮箱：</label>luc******@qq.com</li>
+					      <li><label>身份证号：</label>44*************530</li>
+					      <li><label>证件快照：</label><a href="">点击查看</a></li>
+					    </ul>
+					</div>
+
+				  </div>
+			    </div>
+			  </div>
+			</div>
+	</template>
+
 	<script>
-		var personal_info = {template: 'personal.vue'}
-		var personal_setting = {template: 'personal_setting.vue'}
+		var personi = {template: '#pi'}
+		var persons = {template: '#ps'}
 
 		var routes = [
-			{path:'/info', component: personal_info},
-			{path:'/setting', component:personal_setting}
+			{path:'/info', component: personi},
+			{path:'/setting', component: persons}
 		]
 
 		var router = new VueRouter({
@@ -37,7 +363,8 @@
 
 		var vm = new Vue({
 			router: router
-		}).$mount('#personal_setting')
+		}).$mount('#app')
+
 	</script>
 </body>
 

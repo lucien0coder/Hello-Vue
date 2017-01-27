@@ -1,9 +1,12 @@
-var personal_info = {template: 'personal.vue'}
-var personal_setting = {template: 'personal_setting.vue'}
+// import personalInfo from 'personal'
+// import personalSetting from 'personalSetting'
+
+var personalInfo = {template: '<div>MYInfo</div>'}
+var personalSetting = {template: 'personalSetting.vue'}
 
 var routes = [
-	{path:'/info', component: personal_info},
-	{path:'/setting', component:personal_setting}
+	{path:'/info', component: personalInfo},
+	{path:'/setting', component:personalSetting}
 ]
 
 var router = new VueRouter({
