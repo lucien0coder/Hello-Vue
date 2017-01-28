@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="setting.css">
   	<script src="../vue.js"></script>
   	<script src="../vue-router.js"></script>
-  	<script src="setting.js"></script>
+  	<!-- <script src="setting.js"></script> -->
 <body>
 	<div id="app">
 		<section class="section">
@@ -227,6 +227,7 @@
 	</template>
 
 	<template id="pi">
+	  <div id="posi">
 			<div class="tile is-ancestor">
 			  <div class="tile is-4 is-vertical is-parent">
 			    <div class="tile is-child" style="border-bottom: 1px solid #ece8e8;">
@@ -236,9 +237,9 @@
 			      <div class="hero-body" style="padding: 1rem;">
 			        <div class="container">
 			          <h1 class="title" style="margin-bottom: 0.5rem;">
-			            张海涛
+			            {{ userName }}
 			          </h1>
-			          <h1 class="authentication heig_class_atc">高级认证</h1>
+			          <h1 class="authentication heig_class_atc">{{level}}</h1>
 			          <h2 class="subtitle">
 			            @zhanghaitao
 			          </h2>
@@ -341,11 +342,45 @@
 			    </div>
 			  </div>
 			</div>
+	  </div>
 	</template>
 
 	<script>
-		var personi = {template: '#pi'}
-		var persons = {template: '#ps'}
+		var persons = Vue.extend({
+			template:'#ps',
+			data: function(){
+				return {
+					msg:'hello vue router component'
+				}
+			}
+		})
+
+		var personi = Vue.extend({
+			template:'#pi',
+			data: function(){
+				return{
+					userName:'张海涛',
+					useraccount:'zhanghaitao',
+					bio:'一个勤勤恳恳种代码的农夫',
+					registerDate:'11:09 PM - 1 Jan 2016',
+					local:'China, GuangDong',
+					organization:'South China University of Technology',
+					phoneNO:'1367*****93',
+					eMail:'luc******@qq.com',
+					ID:'44*************530',
+					level:'高级认证'
+				}
+			}
+		})
+
+		// router.map({
+		// 	'/':{component: personi},
+		// 	'':{component: persons}
+
+		// })
+
+		// // var personi = {template: '#pi'}
+		// var persons = {template: '#ps'}
 
 		var routes = [
 			{path:'/', component: personi},
@@ -356,8 +391,9 @@
 			routes :routes
 		})
 
-		var vm = new Vue({
-			router: router
+		var rou = new Vue({
+			router: router,
+			
 		}).$mount('#app')
 
 	</script>
