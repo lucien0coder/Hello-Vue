@@ -241,10 +241,10 @@
 			          </h1>
 			          <h1 class="authentication heig_class_atc">{{level}}</h1>
 			          <h2 class="subtitle">
-			            @zhanghaitao
+			            @{{useraccount}}
 			          </h2>
 			          <blockquotes class="subtitle is-6" style="color: darkgray;">
-			        	一个勤勤恳恳种代码的农夫
+			        	{{bio}}
 			          </blockquotes>
 			        </div>
 			      </div>
@@ -254,19 +254,19 @@
 		            <span class="icon">
 		              <i class="fa fa-clock-o"></i>	
 		            </span>
-		            <span>11:09 PM - 1 Jan 2016</span>
+		            <span>{{registerDate}}</span>
 		          </div>
 			      <div class="content">
 			    	<span class="icon">
 		              <i class="fa fa-map-marker"></i>	
 		            </span>
-		            <span>China, GuangDong</span>
+		            <span>{{local}}</span>
 			      </div>
 				  <div class="content">
 				  	<span class="icon">
 				  	  <i class="fa fa-building"></i>
 				  	</span>
-				  	<span>South China University of Technology</span>
+				  	<span>{{organization}}</span>
 				  </div>
 				  <div class="content" style="border-top: 1px solid #ece8e8;">
 				  	<div class="edit_btn">
@@ -330,10 +330,10 @@
 						<h4><em>账号认证信息</em></h4>
 						<hr>
 						<ul>
-					      <li><label>用户账号：</label>zhanghaitao</li>
-					      <li><label>手机号码：</label>1367*****93</li>
-					      <li><label>电子邮箱：</label>luc******@qq.com</li>
-					      <li><label>身份证号：</label>44*************530</li>
+					      <li><label>用户账号：</label>{{useraccount}}</li>
+					      <li><label>手机号码：</label>{{phoneNO}}</li>
+					      <li><label>电子邮箱：</label>{{eMail}}</li>
+					      <li><label>身份证号：</label>{{ID}}</li>
 					      <li><label>证件快照：</label><a href="">点击查看</a></li>
 					    </ul>
 					</div>
@@ -372,15 +372,6 @@
 				}
 			}
 		})
-
-		// router.map({
-		// 	'/':{component: personi},
-		// 	'':{component: persons}
-
-		// })
-
-		// // var personi = {template: '#pi'}
-		// var persons = {template: '#ps'}
 
 		var routes = [
 			{path:'/', component: personi},
