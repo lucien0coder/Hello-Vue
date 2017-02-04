@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="setting.css">
   	<script src="../vue.js"></script>
   	<script src="../vue-router.js"></script>
-  	<!-- <script src="setting.js"></script> -->
 <body>
 	<div id="app">
 		<section class="section">
@@ -68,28 +67,40 @@
 									  <div class="column is-two-thirds">
 										<label class="label">账号名称</label>
 										<p class="control">
-										  <input disabled class="input" type="text" value="zhanghaitao">
+										  <input disabled class="input" type="text" 
+										  v-bind:placeholder="useraccount">
 										</p>
 										<label class="label">用户名称</label>
 										<p class="control has-icon has-icon-right">
-										  <input class="input is-success" type="text" placeholder="其他用户能记住你的名字" value="张海涛">
+										  <input class="input" type="text" placeholder="其他用户能记住你的名字" 
+										  v-bind:value="userName" 
+										  v-bind:class="{'is-success':uaIsUsed, 'is-danger':!uaIsUsed}"
+										  v-model="userName">
 										  <span class="icon is-small">
-										    <i class="fa fa-check"></i>
+										    <i class="fa"
+										      v-bind:class="{'fa-check': uaIsUsed,'fa-warning': !uaIsUsed}"></i>
 										  </span>
-										  <span class="help is-success">This username is available</span>
+										  <span class="help" 
+ 											v-bind:class="{'is-success':uaIsUsed, 'is-danger': !uaIsUsed}"
+										  >{{unNotice}}</span>
 										</p>
 										<label class="label">你所在地址</label>
 										<p class="control">
-										  <input class="input" type="text" value="中国,广东">
+										  <input class="input" type="text"
+										  v-bind:value="local" 
+										  v-model="local">
 										</p>
 										<label class="label">简介</label>
 										<p class="control">
-										  <textarea class="textarea" placeholder="输入个人简介"></textarea>
+										  <textarea class="textarea" placeholder="输入个人简介" 
+										  v-bind:value="bio" 
+										  v-model="bio"></textarea>
 										</p>
 									  </div>
 									  <div class="column">
 										<label class="label">编辑头像</label>
 										<figure class="image is-128x128">
+										  <input type="file" style="opacity:0;width: 128px;height: 128px;position: absolute;">
 										  <img src="img.jpg">
 										</figure>
 									  </div>
@@ -97,7 +108,9 @@
 								</div>
 							</div>
 						</div>
-					    <button class="button is-primary">确定修改</button>
+					    <button class = "button is-primary" 
+					    	v-bind:disabled = "isProfilEdited"
+					    	>确定修改</button>
 
 						<h1 class="tile"><a name="reset_pwd"></a>重置密码</h1>
 						<div class="content hero" style="border-radius: 0.4em;">
@@ -346,12 +359,58 @@
 	</template>
 
 	<script>
+	  var userName = '张海涛'
+	  var useraccount = 'zhanghaitao'
+	  var bio = '一个勤勤恳恳种代码的农夫'
+	  var registerDate = '11:09 PM - 1 Jan 2016'
+	  var local = 'China, GuangDong'
+	  var organization = 'South China University of Technology'
+	  var phoneNO = '1367*****93'
+	  var eMail = 'luc******@qq.com'
+	  var ID = '44*************530'
+	  var level = '高级认证'
+	  var userNameCanUse = '果然是个好名字'
+	  var userNameCantUse = '该名字已被使用'
+
 		var persons = Vue.extend({
 			template:'#ps',
 			data: function(){
 				return {
-					msg:'hello vue router component'
+					userName: userName,
+					useraccount: useraccount,
+					local: local,
+					bio: bio,
+					old_pwd: '',
+					new_pwd: '',
+					phoneNO: phoneNO,
+					eMail: eMail,
+					ID: ID,
+					isProfilEdited:true,
+					uaIsUsed:'',
+					unNotice: userNameCanUse
 				}
+			},
+			watch:{//监听，如果该项有改变，则触发保存按钮
+				userName : function(new_name){
+					console.log(new_name)
+					this.isProfilEdited = false
+					this.uaIsUsed = false
+					this.unNotice = userNameCantUse
+				},
+				local: function(new_local){
+					console.log(new_local)
+					this.isProfilEdited = false
+				},
+				bio: function(new_bio){
+					console.log(new_bio)
+					this.isProfilEdited = false
+				}
+			},
+			created:function(){
+
+			},
+			methods:{
+
 			}
 		})
 
@@ -359,16 +418,16 @@
 			template:'#pi',
 			data: function(){
 				return{
-					userName:'张海涛',
-					useraccount:'zhanghaitao',
-					bio:'一个勤勤恳恳种代码的农夫',
-					registerDate:'11:09 PM - 1 Jan 2016',
-					local:'China, GuangDong',
-					organization:'South China University of Technology',
-					phoneNO:'1367*****93',
-					eMail:'luc******@qq.com',
-					ID:'44*************530',
-					level:'高级认证'
+					userName: userName,
+					useraccount: useraccount,
+					bio: bio,
+					registerDate: registerDate,
+					local: local,
+					organization: organization,
+					phoneNO: phoneNO,
+					eMail: eMail,
+					ID: ID,
+					level: level
 				}
 			},
 			methods:{
@@ -389,8 +448,6 @@
 			router: router,
 			
 		}).$mount('#app')
-
-		$.userName = 'ifiriifr'
 
 	</script>
 </body>
