@@ -101,7 +101,7 @@
 									  <div class="column">
 										<label class="label">编辑头像</label>
 										<figure class="image is-128x128">
-										  <input type="file" style="opacity:0;width: 128px;height: 128px;position: absolute;">
+										  <input type="file" style="opacity:0;width: 128px;height: 128px;position: absolute;cursor: pointer;" title="点击选择新头像">
 										  <img src="img.jpg">
 										</figure>
 									  </div>
@@ -121,8 +121,15 @@
 									  <div class="control-label">
 									    <label class="label">旧密码</label>
 									  </div>
-									  <div class="control">
-									      <input class="input" type="text" placeholder="Name">
+									  <div class="control has-icon has-icon-right">
+									      <input class="input" type="text" placeholder="请输入旧密码" 
+									        v-bind:class="{'is-danger':!isWrongPwd}" 
+									        @blur="checkPwd" 
+									        v-model.trim="old_pwd">
+									      <span class="icon is-small">
+											<i class="fa" 
+											v-bind:class="{'fa-check':isWrongPwd, 'fa-warning':!isWrongPwd}"></i>
+									      </span>
 									  </div>
 									</div>
 									<div class="control is-horizontal">
@@ -130,21 +137,28 @@
 									    <label class="label">新密码</label>
 									  </div>
 									  <div class="control">
-									      <input class="input" type="text" placeholder="Name">
+									      <input class="input" type="text" placeholder="请输入新密码" 
+									      v-model.trim="new_pwd" 
+									      @blur="isCorrect('checkPwd')">
 									  </div>
 									</div>
 									<div class="control is-horizontal">
 									  <div class="control-label">
 									    <label class="label">重复密码</label>
 									  </div>
-									  <div class="control">
-									      <input class="input" type="text" placeholder="Name">
+									  <div class="control has-icon has-icon-right">
+									      <input class="input" type="text" placeholder="重新输入新密码" 
+									      v-model.trim="cNew_pwd" 
+									      @blur="isCorrect('checkNewPwd')">
+									      <span class="icon is-small"><i class="fa fa-check"></i></span>
 									  </div>
 									</div>
 								</div>
 							</div>
 						</div>
-				        <button class="button is-primary">确定修改</button>
+				        <button class="button is-primary" 
+				          v-bind:disabled="isNewPwd">
+				          确定修改</button>
 						
 						<h1 class="tile" id="authen">认证信息</h1>
 						<div class="content hero" style="border-radius: 0.4em;">
@@ -233,7 +247,6 @@
 								</div>
 							</div>
 						</div>
-						<button class="button is-primary">确定修改</button>
 					</article>
 				</div>
 		  </div>
@@ -383,12 +396,15 @@
 					bio: bio,
 					old_pwd: '',
 					new_pwd: '',
+					cNew_pwd:'',
 					phoneNO: phoneNO,
 					eMail: eMail,
 					ID: ID,
 					isProfilEdited:true,
 					uaIsUsed:'',
-					unNotice: userNameCanUse
+					unNotice: userNameCanUse,
+					isNewPwd:true,
+					isWrongPwd:true,
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -414,9 +430,31 @@
 				scroll:function(se){
 		        	var anchor = this.$el.querySelector(se)
 		        	Velocity(anchor,"scroll", {
-					  duration: 800,
-					  delay: 200
+					  duration: 600
 					});
+				},
+				checkPwd:function(){
+					//验证用户的密码，验证成功后，解锁‘修改按钮’
+					if(this.old_pwd){
+						console.log('11')
+					}
+				},
+				isCorrect:function(type){
+					var a = '';
+					var b = this.new_pwd;
+					if(type == 'checkNewPwd'){//
+						a = this.cNew_pwd
+						//两次输入不一致
+					}else if(type == 'checkPwd'){//
+						a = this.old_pwd;
+						//新旧密码不能一致
+					}
+					//验证两次密码是否一致
+					if(a == b){
+
+					}else{
+
+					}
 				}
 			}
 		})
