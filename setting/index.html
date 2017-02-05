@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="setting.css">
   	<script src="../vue.js"></script>
   	<script src="../vue-router.js"></script>
+  	<script src="../velocity.js"></script>
 <body>
 	<div id="app">
 		<section class="section">
@@ -25,25 +26,25 @@
 					  <p class="panel-heading">
 					    修改个人账号信息
 					  </p>
-					  <a href="#edit_profile" class="panel-block is-active">
+					  <a href="javascript:void(0)" @click="scroll('#edit_profile')" class="panel-block is-active">
 					    <span class="panel-icon">
 					      <i class="fa fa-id-card"></i>
 					    </span>
 					    修改资料
 					  </a>
-					  <a href="#reset_pwd" class="panel-block">
+					  <a href="javascript:void(0)" class="panel-block" @click="scroll('#reset_pwd')">
 					    <span class="panel-icon">
 					      <i class="fa fa-unlock-alt"></i>
 					    </span>
 					    重置密码
 					  </a>
-					  <a href="#authen" class="panel-block">
+					  <a href="javascript:void(0)" @click="scroll('#authen')" class="panel-block">
 					    <span class="panel-icon">
 					      <i class="fa fa-check-square-o"></i>
 					    </span>
 					    增加认证信息
 					  </a>
-					  <a href="#help" class="panel-block">
+					  <a href="javascript:void(0)" class="panel-block">
 					    <span class="panel-icon">
 					      <i class="fa fa-question-circle"></i>
 					    </span>
@@ -59,7 +60,7 @@
 				</div>
 				<div class="tile is-parent is-9 content">
 					<article class="tile is-child">
-						<h1 class="tile"><a name="edit_profile"></a>个人资料</h1>
+						<h1 class="tile" id="edit_profile">个人资料</h1>
 						<div class="content hero" style="border-radius: 0.4em;">
 							<div class="hero-body">
 								<div class="container">
@@ -112,7 +113,7 @@
 					    	v-bind:disabled = "isProfilEdited"
 					    	>确定修改</button>
 
-						<h1 class="tile"><a name="reset_pwd"></a>重置密码</h1>
+						<h1 class="tile" id="reset_pwd">重置密码</h1>
 						<div class="content hero" style="border-radius: 0.4em;">
 							<div class="hero-body">
 								<div class="container">
@@ -145,7 +146,7 @@
 						</div>
 				        <button class="button is-primary">确定修改</button>
 						
-						<h1 class="tile"><a name="authen"></a>认证信息</h1>
+						<h1 class="tile" id="authen">认证信息</h1>
 						<div class="content hero" style="border-radius: 0.4em;">
 							<div class="hero-body">
 								<div class="container">
@@ -410,7 +411,13 @@
 
 			},
 			methods:{
-
+				scroll:function(se){
+		        	var anchor = this.$el.querySelector(se)
+		        	Velocity(anchor,"scroll", {
+					  duration: 800,
+					  delay: 200
+					});
+				}
 			}
 		})
 
