@@ -13,6 +13,13 @@
 	-webkit-transform:rotate(348deg); /* Safari 和 Chrome */
 	-o-transform:rotate(348deg); 	/* Opera */
 }
+.notice{
+    position: fixed;
+    width: 200px;
+    top: 100px;
+    right: 5px;
+    z-index: 200;
+}
 
 .heig_class_atc{
 	color: rgba(247, 0, 228, 0.42);
@@ -28,7 +35,6 @@ section{
     background: -o-linear-gradient(bottom right, rgb(230, 255, 202), rgb(255, 207, 173)); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(bottom right, rgb(230, 255, 202), rgb(255, 207, 173)); /* Firefox 3.6 - 15 */
     background: linear-gradient(to bottom right, rgb(230, 255, 202) , rgb(255, 207, 173)); /* 标准的语法（必须放在最后） */
-    height: 1650px;
 }
 
 .shield_poi{

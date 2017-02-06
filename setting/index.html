@@ -13,9 +13,19 @@
 	<div id="app">
 		<section class="section">
 			<div class="container">
-				<router-view></router-view>
+				<transition name="fade" mode="out-in">
+					<router-view></router-view>
+				</transition>
 			</div>
 		</section>
+
+		<div class="notice">
+			<div class="notification is-danger">
+			  <button class="delete"></button>
+			  旧密码不正确
+			</div>
+		</div>
+		
 	</div>
 
 	<template id="ps">
@@ -435,8 +445,13 @@
 				},
 				checkPwd:function(){
 					//验证用户的密码，验证成功后，解锁‘修改按钮’
-					if(this.old_pwd){
+					if(this.old_pwd){//验证用户操作是否正确
 						console.log('11')
+						if(true){//验证密码是否正确，正确则通过并
+							this.isWrongPwd = true;
+						}else{//不正确，提示用户重新输入，设置danger样式
+							this.isWrongPwd = false;
+						}
 					}
 				},
 				isCorrect:function(type){
