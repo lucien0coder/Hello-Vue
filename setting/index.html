@@ -6,26 +6,28 @@
 	<link rel="stylesheet" href="../bulma.css">
 	<link rel="stylesheet" href="../fa/css/font-awesome.css">
 	<link rel="stylesheet" href="setting.css">
-  	<script src="../vue.js"></script>
-  	<script src="../vue-router.js"></script>
-  	<script src="../velocity.js"></script>
+
 <body>
 	<div id="app">
 		<section class="section">
 			<div class="container">
-				<transition name="fade" mode="out-in">
+				<transition >
 					<router-view></router-view>
 				</transition>
 			</div>
 		</section>
-
-		<div class="notice">
-			<div class="notification is-danger">
-			  <button class="delete"></button>
-			  旧密码不正确
-			</div>
-		</div>
 		
+		<transition 
+		  v-on:leave="leave" >
+			<div class="notice" 
+			  v-if="isWrong">
+				<div class="notification is-danger">
+				  <button class="delete" @click="fadeTips"></button>
+				  {{wrongTips}}
+				</div>
+			</div>
+		</transition>
+
 	</div>
 
 	<template id="ps">
@@ -381,6 +383,9 @@
 			</div>
 	  </div>
 	</template>
+  	<script src="../vue.js"></script>
+  	<script src="../vue-router.js"></script>
+  	<script src="../velocity.js"></script>
 
 	<script>
 	  var userName = '张海涛'
@@ -414,22 +419,19 @@
 					uaIsUsed:'',
 					unNotice: userNameCanUse,
 					isNewPwd:true,
-					isWrongPwd:true,
+					isWrongPwd:true
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
 				userName : function(new_name){
-					console.log(new_name)
 					this.isProfilEdited = false
 					this.uaIsUsed = false
 					this.unNotice = userNameCantUse
 				},
 				local: function(new_local){
-					console.log(new_local)
 					this.isProfilEdited = false
 				},
 				bio: function(new_bio){
-					console.log(new_bio)
 					this.isProfilEdited = false
 				}
 			},
@@ -442,11 +444,11 @@
 		        	Velocity(anchor,"scroll", {
 					  duration: 600
 					});
+		        	
 				},
 				checkPwd:function(){
 					//验证用户的密码，验证成功后，解锁‘修改按钮’
 					if(this.old_pwd){//验证用户操作是否正确
-						console.log('11')
 						if(true){//验证密码是否正确，正确则通过并
 							this.isWrongPwd = true;
 						}else{//不正确，提示用户重新输入，设置danger样式
@@ -457,18 +459,19 @@
 				isCorrect:function(type){
 					var a = '';
 					var b = this.new_pwd;
-					if(type == 'checkNewPwd'){//
+					if(type == 'checkNewPwd'){//判断
 						a = this.cNew_pwd
-						//两次输入不一致
+						rou.wrongTips = '两次输入不一致';
 					}else if(type == 'checkPwd'){//
 						a = this.old_pwd;
-						//新旧密码不能一致
+						rou.wrongTips = '新旧密码不能一致';
 					}
 					//验证两次密码是否一致
 					if(a == b){
 
 					}else{
-
+						rou.isWrong = true;
+		        		setTimeout('rou.isWrong = false',3000)
 					}
 				}
 			}
@@ -506,7 +509,21 @@
 
 		var rou = new Vue({
 			router: router,
-			
+			data:{
+				isWrong:true,
+				wrongTips:'旧密码不正确'
+			},
+			methods:{
+				fadeTips: function(){
+					this.isWrong = false
+				},
+				leave: function (el, done) {
+			        Velocity(el,{
+					    translateX: "200px",
+					    rotateZ: "45deg"
+					})
+				}
+			}
 		}).$mount('#app')
 
 	</script>

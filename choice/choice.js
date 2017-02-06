@@ -131,7 +131,6 @@ var cv = new Vue({
         	el.style.height = 0
 	    },
 	    enter: function (el, done) {
-	    	console.log(el)
 	      var delay = el.dataset.index * 1500
 	      setTimeout(function () {
 	        Velocity(
