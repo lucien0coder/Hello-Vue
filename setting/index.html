@@ -20,8 +20,8 @@
 		<transition 
 		  v-on:leave="leave" >
 			<div class="notice" 
-			  v-if="isWrong">
-				<div class="notification is-danger">
+			  v-if="show_notic">
+				<div class="notification is-danger" v-bind:class="{'is-danger':isWrong}">
 				  <button class="delete" @click="fadeTips"></button>
 				  {{wrongTips}}
 				</div>
@@ -134,11 +134,12 @@
 									    <label class="label">旧密码</label>
 									  </div>
 									  <div class="control has-icon has-icon-right">
-									      <input class="input" type="text" placeholder="请输入旧密码" 
+									      <input class="input" type="password" placeholder="请输入旧密码" 
 									        v-bind:class="{'is-danger':!isWrongPwd}" 
 									        @blur="checkPwd" 
 									        v-model.trim="old_pwd">
-									      <span class="icon is-small">
+									      <span class="icon is-small" 
+									        v-if="show_check_icon">
 											<i class="fa" 
 											v-bind:class="{'fa-check':isWrongPwd, 'fa-warning':!isWrongPwd}"></i>
 									      </span>
@@ -149,8 +150,9 @@
 									    <label class="label">新密码</label>
 									  </div>
 									  <div class="control">
-									      <input class="input" type="text" placeholder="请输入新密码" 
+									      <input class="input" type="password" placeholder="请输入新密码" 
 									      v-model.trim="new_pwd" 
+									      v-bind:disabled="isNewPwd"
 									      @blur="isCorrect('checkPwd')">
 									  </div>
 									</div>
@@ -159,17 +161,21 @@
 									    <label class="label">重复密码</label>
 									  </div>
 									  <div class="control has-icon has-icon-right">
-									      <input class="input" type="text" placeholder="重新输入新密码" 
+									      <input class="input" type="password" placeholder="重新输入新密码" 
 									      v-model.trim="cNew_pwd" 
+									      v-bind:disabled="isNewPwd"
 									      @blur="isCorrect('checkNewPwd')">
-									      <span class="icon is-small"><i class="fa fa-check"></i></span>
+									      <span class="icon is-small" 
+									        v-if="show_correct_icon">
+									        <i class="fa fa-check"></i></span>
 									  </div>
 									</div>
 								</div>
 							</div>
 						</div>
 				        <button class="button is-primary" 
-				          v-bind:disabled="isNewPwd">
+				          v-bind:disabled="isNewPwd" 
+				          @click="saveNewPwd">
 				          确定修改</button>
 						
 						<h1 class="tile" id="authen">认证信息</h1>
@@ -419,7 +425,11 @@
 					uaIsUsed:'',
 					unNotice: userNameCanUse,
 					isNewPwd:true,
-					isWrongPwd:true
+					isWrongPwd:true,
+					show_check_icon:false,
+					show_correct_icon:false,
+					new_pwd_correct:'0',
+					new_cpwd_same:'0'
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -450,29 +460,51 @@
 					//验证用户的密码，验证成功后，解锁‘修改按钮’
 					if(this.old_pwd){//验证用户操作是否正确
 						if(true){//验证密码是否正确，正确则通过并
+							this.show_check_icon = true;
 							this.isWrongPwd = true;
+							this.isNewPwd = false;
 						}else{//不正确，提示用户重新输入，设置danger样式
+							this.show_check_icon = true;
 							this.isWrongPwd = false;
+							rou.show_notic = true;
+							setTimeout('rou.show_notic = false', 3000)
 						}
 					}
 				},
 				isCorrect:function(type){
 					var a = '';
 					var b = this.new_pwd;
-					if(type == 'checkNewPwd'){//判断
+					if(type == 'checkNewPwd'){
 						a = this.cNew_pwd
-						rou.wrongTips = '两次输入不一致';
-					}else if(type == 'checkPwd'){//
+						rou.wrongTips = '两次输入密码不一致';
+						if(a == b){
+							this.show_correct_icon = true
+							this.new_cpwd_same = '1'
+						}else{
+							rou.show_notic = true;
+			        		setTimeout('rou.show_notic = false',3000)
+						}
+					}else if(type == 'checkPwd'){
 						a = this.old_pwd;
-						rou.wrongTips = '新旧密码不能一致';
+						rou.wrongTips = '新旧密码不能相同';
+						if(a == b){
+							rou.show_notic = true;
+			        		setTimeout('rou.show_notic = false',3000)
+						}else{
+							this.new_pwd_correct = '1'
+						}
 					}
-					//验证两次密码是否一致
-					if(a == b){
-
+				},
+				saveNewPwd: function(){
+					var flg = Number(this.new_pwd_correct) + Number(this.new_cpwd_same)//1+1
+					if(2 == flg){//保存密码，并清空
+						this.new_pwd = this.cNew_pwd = this.old_pwd = '';//清空
+						this.show_correct_icon = this.show_check_icon = false
+						this.new_pwd_correct = this.new_cpwd_same = '0'
 					}else{
-						rou.isWrong = true;
-		        		setTimeout('rou.isWrong = false',3000)
-					}
+						this.isCorrect('checkNewPwd')
+						this.isCorrect('checkPwd')
+					}	
 				}
 			}
 		})
@@ -510,12 +542,13 @@
 		var rou = new Vue({
 			router: router,
 			data:{
-				isWrong:true,
-				wrongTips:'旧密码不正确'
+				isWrong:false,
+				wrongTips:'旧密码不正确',
+				show_notic:false
 			},
 			methods:{
 				fadeTips: function(){
-					this.isWrong = false
+					this.show_notic = false
 				},
 				leave: function (el, done) {
 			        Velocity(el,{
