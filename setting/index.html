@@ -21,9 +21,10 @@
 		  v-on:leave="leave" >
 			<div class="notice" 
 			  v-if="show_notic">
-				<div class="notification is-danger" v-bind:class="{'is-danger':isWrong}">
+				<div class="notification" 
+				  v-bind:class="{'is-danger':isWrong,'is-success':!isWrong}">
 				  <button class="delete" @click="fadeTips"></button>
-				  {{wrongTips}}
+				  {{noticTips}}
 				</div>
 			</div>
 		</transition>
@@ -136,6 +137,7 @@
 									  <div class="control has-icon has-icon-right">
 									      <input class="input" type="password" placeholder="请输入旧密码" 
 									        v-bind:class="{'is-danger':!isWrongPwd}" 
+									        v-bind:disabled="oldIsCheck"
 									        @blur="checkPwd" 
 									        v-model.trim="old_pwd">
 									      <span class="icon is-small" 
@@ -188,7 +190,7 @@
 									  </div>
 									  <div class="column is-6">
 									    <p class="notification">
-											<strong>账号：</strong> zhanghaitao
+											<strong>账号：</strong> {{useraccount}}
 									    </p>
 									  </div>
 									  <div class="column">
@@ -202,31 +204,40 @@
 									  <div class="column is-2 shield_poi">
 								      	<span style="color:#3273dc" class="icon is-medium"><i class="fa fa-shield"></i></span>
 									  </div>
-									  <div class="column is-6">
+									  <div class="column is-4">
 									    <p class="notification">
-									    	<strong>手机号码：</strong> 1387*****12
+									    	<input class="input" type="text" placeholder="输入手机号码">
+									    	<!-- <strong>手机号码：</strong> {{phoneNO}} -->
+
 									    </p>
 									  </div>
 									  <div class="column">
-									    <p class="notification"><span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span></p>
+									    <p class="notification">
+									    <!-- <span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span> -->
+									    <input class="input" type="text" placeholder="验证码">
+									    </p>
 									  </div>
 									  <div class="column">
-									    <p class="notification"><a>修改</a></p>
+									    <p class="notification">
+									      <button class="button is-primary">{{ smsTimer }}s</button>
+									    <!-- <a @click="modifyData">修改</a></p> -->
 									  </div>
+
 									</div>
 
 									<div class="columns">
 									  <div class="column is-2"></div>
 									  <div class="column is-6">
 									    <p class="notification">
-									    	<strong>电子邮箱：</strong> kulo***@qq.com
+									    	<strong>电子邮箱：</strong> {{eMail}}
 									    </p>
 									  </div>
 									  <div class="column">
 									    <p class="notification" style="color:#ffdd57"><span class="icon"><i class="fa fa-exclamation-triangle"></i></span></p>
 									  </div>
 									  <div class="column">
-									    <p class="notification"><a>验证</a></p>
+									    <p class="notification"><a 
+									      @click="VerifyData">验证</a></p>
 									  </div>
 									</div>
 
@@ -235,7 +246,7 @@
 								      	<span style="color:#ff2b56"  class="icon is-medium"><i class="fa fa-shield"></i></span>
 									  </div>
 									  <div class="column is-6">
-									    <p class="notification"><strong>身份证号：</strong> 4440************549</p>
+									    <p class="notification"><strong>身份证号：</strong> {{ID}}</p>
 									  </div>
 									  <div class="column">
 									    <p class="notification">
@@ -382,7 +393,6 @@
 					      <li><label>证件快照：</label><a href="">点击查看</a></li>
 					    </ul>
 					</div>
-
 				  </div>
 			    </div>
 			  </div>
@@ -429,7 +439,15 @@
 					show_check_icon:false,
 					show_correct_icon:false,
 					new_pwd_correct:'0',
-					new_cpwd_same:'0'
+					new_cpwd_same:'0',
+					oldIsCheck:false,
+					time:60
+				}
+			},
+			computed: {
+				smsTimer:function(){
+
+					return this.time--
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -443,6 +461,11 @@
 				},
 				bio: function(new_bio){
 					this.isProfilEdited = false
+				},
+				new_pwd:function(){
+					if('' != this.cNew_pwd){
+						this.isCorrect('checkNewPwd')
+					}
 				}
 			},
 			created:function(){
@@ -454,7 +477,6 @@
 		        	Velocity(anchor,"scroll", {
 					  duration: 600
 					});
-		        	
 				},
 				checkPwd:function(){
 					//验证用户的密码，验证成功后，解锁‘修改按钮’
@@ -463,11 +485,12 @@
 							this.show_check_icon = true;
 							this.isWrongPwd = true;
 							this.isNewPwd = false;
+							this.oldIsCheck = true;
 						}else{//不正确，提示用户重新输入，设置danger样式
 							this.show_check_icon = true;
 							this.isWrongPwd = false;
 							rou.show_notic = true;
-							setTimeout('rou.show_notic = false', 3000)
+							setTimeout('rou.show_notic = false', 5000)
 						}
 					}
 				},
@@ -476,20 +499,24 @@
 					var b = this.new_pwd;
 					if(type == 'checkNewPwd'){
 						a = this.cNew_pwd
-						rou.wrongTips = '两次输入密码不一致';
+						rou.noticTips = '两次输入密码不一致';
 						if(a == b){
 							this.show_correct_icon = true
 							this.new_cpwd_same = '1'
 						}else{
+							rou.isWrong = true
+							this.new_cpwd_same = '0'
 							rou.show_notic = true;
-			        		setTimeout('rou.show_notic = false',3000)
+			        		setTimeout('rou.show_notic = false',5000)
 						}
 					}else if(type == 'checkPwd'){
 						a = this.old_pwd;
-						rou.wrongTips = '新旧密码不能相同';
+						rou.noticTips = '新旧密码不能相同';
 						if(a == b){
+							rou.isWrong = true
 							rou.show_notic = true;
-			        		setTimeout('rou.show_notic = false',3000)
+			        		setTimeout('rou.show_notic = false',5000)
+			        		this.new_pwd_correct = '0'
 						}else{
 							this.new_pwd_correct = '1'
 						}
@@ -499,12 +526,29 @@
 					var flg = Number(this.new_pwd_correct) + Number(this.new_cpwd_same)//1+1
 					if(2 == flg){//保存密码，并清空
 						this.new_pwd = this.cNew_pwd = this.old_pwd = '';//清空
-						this.show_correct_icon = this.show_check_icon = false
+						this.show_correct_icon = this.show_check_icon = this.oldIsCheck = false
 						this.new_pwd_correct = this.new_cpwd_same = '0'
-					}else{
-						this.isCorrect('checkNewPwd')
-						this.isCorrect('checkPwd')
+						this.isNewPwd = true
+						rou.isWrong = false
+						rou.noticTips = '密码重置成功！'
+						rou.show_notic = true
+		        		setTimeout('rou.show_notic = false',5000)
+					}else if(1 == flg){
+						if(this.new_pwd_correct == '1'){
+							rou.noticTips = '两次输入密码不一致';
+						}else if(this.new_cpwd_same == '1'){
+							rou.noticTips = '新旧密码不能相同'
+						}
+						rou.isWrong = true
+						rou.show_notic = true;
+		        		setTimeout('rou.show_notic = false',5000)
 					}	
+				},
+				modifyData:function(){
+					console.log('ddd')
+				},
+				VerifyData:function(){
+					console.log('ttt')
 				}
 			}
 		})
@@ -543,7 +587,7 @@
 			router: router,
 			data:{
 				isWrong:false,
-				wrongTips:'旧密码不正确',
+				noticTips:'旧密码不正确',
 				show_notic:false
 			},
 			methods:{
