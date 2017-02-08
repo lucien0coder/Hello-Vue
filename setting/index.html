@@ -211,9 +211,13 @@
 									          <a href="javascript:void(0)" class="button is-primary" title="点击获取验证码" 
 									            v-bind:disabled="reSend" 
 									            @click="countSecond">
-									            {{ time }}
+									            <span v-if="!showIcon">{{ time }}</span>
+									            <span class="icon"
+									                v-if="showIcon">
+									            	<i class="fa" 
+									            	  v-bind:class="{'fa-telegram':!reSend}"></i>
+									            </span>
 									          </a>
-											
 									    </p>
 									  </div>
 									  <div class="column is-3">
@@ -222,10 +226,10 @@
 									    <input class="input" type="text" placeholder="验证码">
 									    </p>
 									  </div>
-									  <div class="column">
+									  <div class="column is-2">
 									    <p class="notification">
-									    <a class="button is-primary" 
-									      @click="modifyData">修改</a></p>
+									      <a class="button is-primary" 
+									        @click="modifyData">确定</a></p>
 									  </div>
 
 									</div>
@@ -240,8 +244,9 @@
 									  <div class="column">
 									    <p class="notification" style="color:#ffdd57"><span class="icon"><i class="fa fa-exclamation-triangle"></i></span></p>
 									  </div>
-									  <div class="column">
-									    <p class="notification"><a 
+									  <div class="column is-2">
+									    <p class="notification">
+									    <a 
 									      @click="VerifyData">验证</a></p>
 									  </div>
 									</div>
@@ -448,7 +453,8 @@
 					oldIsCheck:false,
 					time:'60',
 					reSend:false,
-					interval:''
+					interval:'',
+					showIcon:true,
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -551,15 +557,15 @@
 				countSecond:function(){
 					this.time = 60
 					this.reSend = true
+					this.showIcon = false
 					this.interval = setInterval(this.countdown,1000)
 				},
 				countdown:function(){
-					console.log('w')
 					if(this.time > 0){
 						this.time --
 					}else{
-						this.time = '重新获取'
 						this.reSend = false
+						this.showIcon = true
 						clearInterval(this.interval)
 					}
 				}
