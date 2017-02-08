@@ -204,14 +204,19 @@
 									  <div class="column is-2 shield_poi">
 								      	<span style="color:#3273dc" class="icon is-medium"><i class="fa fa-shield"></i></span>
 									  </div>
-									  <div class="column is-4">
-									    <p class="notification">
-									    	<input class="input" type="text" placeholder="输入手机号码">
+									  <div class="column is-5">
+									    <p class="notification control has-addons">
 									    	<!-- <strong>手机号码：</strong> {{phoneNO}} -->
-
+									          <input type="text" class="input" placeholder="输入手机号码">
+									          <a href="javascript:void(0)" class="button is-primary" title="点击获取验证码" 
+									            v-bind:disabled="reSend" 
+									            @click="countSecond">
+									            {{ time }}
+									          </a>
+											
 									    </p>
 									  </div>
-									  <div class="column">
+									  <div class="column is-3">
 									    <p class="notification">
 									    <!-- <span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span> -->
 									    <input class="input" type="text" placeholder="验证码">
@@ -219,8 +224,8 @@
 									  </div>
 									  <div class="column">
 									    <p class="notification">
-									      <button class="button is-primary">{{ smsTimer }}s</button>
-									    <!-- <a @click="modifyData">修改</a></p> -->
+									    <a class="button is-primary" 
+									      @click="modifyData">修改</a></p>
 									  </div>
 
 									</div>
@@ -441,13 +446,9 @@
 					new_pwd_correct:'0',
 					new_cpwd_same:'0',
 					oldIsCheck:false,
-					time:60
-				}
-			},
-			computed: {
-				smsTimer:function(){
-
-					return this.time--
+					time:'60',
+					reSend:false,
+					interval:''
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -467,9 +468,6 @@
 						this.isCorrect('checkNewPwd')
 					}
 				}
-			},
-			created:function(){
-
 			},
 			methods:{
 				scroll:function(se){
@@ -549,6 +547,21 @@
 				},
 				VerifyData:function(){
 					console.log('ttt')
+				},
+				countSecond:function(){
+					this.time = 60
+					this.reSend = true
+					this.interval = setInterval(this.countdown,1000)
+				},
+				countdown:function(){
+					console.log('w')
+					if(this.time > 0){
+						this.time --
+					}else{
+						this.time = '重新获取'
+						this.reSend = false
+						clearInterval(this.interval)
+					}
 				}
 			}
 		})
