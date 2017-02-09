@@ -207,9 +207,11 @@
 									  <div class="column is-5">
 									    <p class="notification control has-addons">
 									    	<!-- <strong>手机号码：</strong> {{phoneNO}} -->
-									          <input type="text" class="input" placeholder="输入手机号码">
+									          <input type="tel" class="input" placeholder="输入手机号码" 
+									            v-model.trim="phoneNOText" maxlength="13"
+									            >
 									          <a href="javascript:void(0)" class="button is-primary" title="点击获取验证码" 
-									            v-bind:disabled="reSend" 
+									            v-bind:disabled="sendMsn" 
 									            @click="countSecond">
 									            <span v-if="!showIcon">{{ time }}</span>
 									            <span class="icon"
@@ -223,13 +225,14 @@
 									  <div class="column is-3">
 									    <p class="notification">
 									    <!-- <span class="icon" style="color:#23d160"><i class="fa fa-check"></i></span> -->
-									    <input class="input" type="text" placeholder="验证码">
+									    <input class="input" type="text" placeholder="验证码" 
+									      v-model.tirm="phoneVerifyData" maxlength="5">
 									    </p>
 									  </div>
 									  <div class="column is-2">
 									    <p class="notification">
 									      <a class="button is-primary" 
-									        @click="modifyData">确定</a></p>
+									        @click="modifyData" v-bind:disabled="bindingPhone">确定</a></p>
 									  </div>
 
 									</div>
@@ -246,8 +249,7 @@
 									  </div>
 									  <div class="column is-2">
 									    <p class="notification">
-									    <a 
-									      @click="VerifyData">验证</a></p>
+									    <a @click="VerifyData" >验证</a></p>
 									  </div>
 									</div>
 
@@ -452,9 +454,13 @@
 					new_cpwd_same:'0',
 					oldIsCheck:false,
 					time:'60',
+					sendMsn:true,
 					reSend:false,
 					interval:'',
 					showIcon:true,
+					phoneNOText:'',
+					bindingPhone:true,
+					phoneVerifyData:''
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -473,7 +479,28 @@
 					if('' != this.cNew_pwd){
 						this.isCorrect('checkNewPwd')
 					}
-				}
+				},
+				phoneNOText:function(new_phone){
+				 var lg = new_phone.length
+				 switch(lg){
+				 	case 3:
+				 	  this.phoneNOText += ' '
+				 	  break;
+				 	case 8:
+ 					  this.phoneNOText += ' '
+ 					  break;
+ 					case 13:
+ 					  this.sendMsn = false;
+ 					  break;	
+				 }
+				},
+				phoneVerifyData:function(new_verifyData){
+				 	console.log(new_verifyData.length)
+				 	var lg = new_verifyData.length
+				 	if(lg == 5){
+				 		this.bindingPhone = false
+				 	}
+				 }
 			},
 			methods:{
 				scroll:function(se){
@@ -558,12 +585,14 @@
 					this.time = 60
 					this.reSend = true
 					this.showIcon = false
+					this.sendMsn = true
 					this.interval = setInterval(this.countdown,1000)
 				},
 				countdown:function(){
 					if(this.time > 0){
 						this.time --
 					}else{
+						this.sendMsn = false
 						this.reSend = false
 						this.showIcon = true
 						clearInterval(this.interval)
