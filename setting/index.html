@@ -39,7 +39,8 @@
 					  <p class="panel-heading">
 					    修改个人账号信息
 					  </p>
-					  <a href="javascript:void(0)" @click="scroll('#edit_profile')" class="panel-block is-active">
+					  <a href="javascript:void(0)" @click="scroll('#edit_profile')" class="panel-block" 
+					    v-bind:class="{'is-active':panel_1}">
 					    <span class="panel-icon">
 					      <i class="fa fa-id-card"></i>
 					    </span>
@@ -232,7 +233,9 @@
 									  <div class="column is-2">
 									    <p class="notification">
 									      <a class="button is-primary" 
-									        @click="modifyData" v-bind:disabled="bindingPhone">确定</a></p>
+									        @click="modifyData" 
+									        v-bind:disabled="bindingPhone"
+									       >确定</a></p>
 									  </div>
 
 									</div>
@@ -241,13 +244,18 @@
 									  <div class="column is-2"></div>
 									  <div class="column is-6">
 									    <p class="notification">
-									    	<strong>电子邮箱：</strong> {{eMail}}
+									    	<!-- <strong>电子邮箱：</strong> {{eMail}} -->
+									    	<input type="email" class="input" placeholder="username@agent.cn" 
+									    	  @blur="">
 									    </p>
 									  </div>
 									  <div class="column">
-									    <p class="notification" style="color:#ffdd57"><span class="icon"><i class="fa fa-exclamation-triangle"></i></span></p>
+									    <p class="notification" style="color:#ffdd57">
+									      <!-- <span class="icon" ><i class="fa fa-exclamation-triangle"></i></span> -->
+									      <a class="button is-primary">接收认证邮件</a>
+									    </p>
 									  </div>
-									  <div class="column is-2">
+									  <div class="column is-2" style="display:none">
 									    <p class="notification">
 									    <a @click="VerifyData" >验证</a></p>
 									  </div>
@@ -460,7 +468,11 @@
 					showIcon:true,
 					phoneNOText:'',
 					bindingPhone:true,
-					phoneVerifyData:''
+					phoneVerifyData:'',
+					panel_1:true,
+					panel_2:false,
+					panel_3:false,
+					panel_4:false
 				}
 			},
 			watch:{//监听，如果该项有改变，则触发保存按钮
@@ -577,6 +589,7 @@
 				},
 				modifyData:function(){
 					console.log('ddd')
+					alert(this.phoneNOText+': '+this.phoneVerifyData)
 				},
 				VerifyData:function(){
 					console.log('ttt')
