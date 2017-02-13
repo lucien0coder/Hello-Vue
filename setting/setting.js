@@ -1,43 +1,67 @@
-var persons = Vue.extend({
-			template:'#ps',
-			data: function(){
-				return {
-					msg:'hello vue router component'
-				}
-			}
-		})
+// let sleep = (time)=> new Promise((resolve, reject)=>{
+// 	setTimeout(()=>{
+// 		// resolve('yes')
+// 		reject('err')
+// 	},time)
+// })
 
-		var personi = Vue.extend({
-			template:'#pi',
-			data: function(){
-				return{
-					userName:'张海涛',
-					useraccount:'zhanghaitao',
-					bio:'一个勤勤恳恳种代码的农夫',
-					registerDate:'11:09 PM - 1 Jan 2016',
-					local:'China, GuangDong',
-					organization:'South China University of Technology',
-					phoneNO:'1367*****93',
-					eMail:'luc******@qq.com',
-					ID:'44*************530',
-					level:'高级认证'
-				}
-			},
-			methods:{
-				
-			}
-		})
+// let start = async ()=>{
+// 	console.log('start')
+// 	try{
+// 		let a = await sleep(3000)
+// 		console.log('end: '+a)
+// 	}catch(err){
+// 		console.log('err: '+err)
+// 	}
+// }
 
-		var routes = [
-			{path:'/', component: personi},
-			{path:'/setting', component: persons}
-		]
+// start();
 
-		var router = new VueRouter({
-			routes :routes
-		})
+var fs = require('fs');
+var path = require('path');
+var request = require('request');
 
-		var rou = new Vue({
-			router: router,
-			
-		}).$mount('#app')
+var movieDir = __dirname + '/movies',
+    exts     = ['.mkv', '.avi', '.mp4', '.rm', '.rmvb', '.wmv'];
+
+// 读取文件列表
+var readFiles = function () {
+    return new Promise(function (resolve, reject) {
+        fs.readdir(movieDir, function (err, files) {
+            resolve(files.filter((v) => exts.includes(path.parse(v).ext)));
+        });
+    });
+};
+
+// 获取海报
+var getPoster = function (movieName) {
+    let url = `https://api.douban.com/v2/movie/search?q=${encodeURI(movieName)}`;
+
+    return new Promise(function (resolve, reject) {
+        request({url: url, json: true}, function (error, response, body) {
+            if (error) return reject(error);
+
+            resolve(body.subjects[0].images.large);
+        })
+    });
+};
+
+// 保存海报
+var savePoster = function (movieName, url) {
+    request.get(url).pipe(fs.createWriteStream(path.join(movieDir, movieName + '.jpg')));
+};
+
+
+(async () => {
+    let files = await readFiles();
+
+    // await只能使用在原生语法
+    for (var file of files) {
+        let name = path.parse(file).name;
+
+        console.log(`正在获取【${name}】的海报`);
+        savePoster(name, await getPoster(name));
+    }
+
+    console.log('=== 获取海报完成 ===');
+})();
